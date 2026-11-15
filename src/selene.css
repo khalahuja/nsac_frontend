@@ -1,0 +1,936 @@
+/* ==========================================================================
+   SELENE — Unified Solar System & Lunar Digital Twin
+   Modern Aerospace Mission-Control Aesthetics
+   ========================================================================== */
+
+
+
+/* Base resets & typography */
+.selene-app {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(circle at 16% -8%, rgba(67, 56, 202, 0.22), transparent 35%),
+    radial-gradient(circle at 92% 108%, rgba(6, 78, 59, 0.22), transparent 40%),
+    linear-gradient(145deg, #020605 0%, #050713 52%, #06100d 100%);
+  color: var(--sl-text-primary);
+  font-family: var(--sl-font-ui);
+  font-size: 15px;
+  line-height: 1.58;
+  overflow: hidden;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.selene-app *, .selene-app *::before, .selene-app *::after {
+  box-sizing: border-box;
+}
+
+.selene-app button, .selene-app input, .selene-app select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.selene-app button {
+  cursor: pointer;
+  border: 1px solid var(--sl-border);
+  border-radius: var(--sl-radius-sm);
+  background: var(--sl-bg-card);
+  color: var(--sl-text-secondary);
+  transition: all var(--sl-fast) var(--sl-ease);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.selene-app button:hover:not(:disabled) {
+  background: var(--sl-bg-card-hover);
+  color: var(--sl-text-primary);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.selene-app button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.selene-app button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.selene-app :focus-visible {
+  outline: 2px solid var(--sl-accent-lunar);
+  outline-offset: 2px;
+}
+
+/* Brand */
+.sl-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.sl-brand-logo {
+  width: 44px;
+  height: 44px;
+  display: block;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.sl-brand-text strong {
+  font-family: var(--sl-font-heading);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--sl-text-primary);
+  display: block;
+  line-height: 1.1;
+}
+
+.sl-brand-text small {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--sl-accent-cyan);
+  display: block;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* Primary Mode Tabs (Center Navigation) */
+
+/* Navbar Tail Controls */
+.sl-nav-tail {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.sl-tz-select {
+  height: 32px;
+  padding: 0 10px;
+  background: var(--sl-bg-card);
+  border: 1px solid var(--sl-border);
+  border-radius: var(--sl-radius-sm);
+  color: var(--sl-text-secondary);
+  font-size: 13px;
+  color-scheme: dark;
+  outline: none;
+  cursor: pointer;
+}
+
+.sl-tz-select:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ==========================================================================
+   Workspace Layout (Viewport + Inspector)
+   ========================================================================== */
+
+.sl-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 420px;
+  flex: 1;
+  min-height: 0;
+  position: relative;
+}
+
+/* 3D Viewport */
+.sl-viewer {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background: radial-gradient(ellipse 70% 60% at 50% 50%, #081122 0%, #030611 100%);
+}
+
+.sl-viewer canvas {
+  width: 100% !important;
+  height: 100% !important;
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.sl-viewer canvas:active {
+  cursor: grabbing;
+}
+
+/* Scene Title Overlay */
+
+.sl-eyebrow {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--sl-accent-cyan);
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Floating Top-Right View Controls */
+
+/* Bottom Control Dock */
+.sl-floating-dock {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(10, 17, 30, 0.85);
+  border: 1px solid var(--sl-border);
+  padding: 6px 10px;
+  border-radius: var(--sl-radius-pill);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 12px 35px -8px rgba(0, 0, 0, 0.7);
+}
+
+.sl-dock-btn {
+  height: 32px;
+  padding: 0 13px;
+  border-radius: var(--sl-radius-pill);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--sl-text-secondary);
+  background: rgba(29, 34, 48, 0.04);
+  border: 1px solid var(--sl-border);
+  white-space: nowrap;
+}
+
+.sl-dock-btn.is-active {
+  color: #121e06;
+  background: linear-gradient(135deg, #e4f7a7, #c6eb72);
+  border-color: var(--sl-accent-lunar);
+}
+
+.sl-dock-btn.is-primary {
+  color: #031c2e;
+  background: linear-gradient(135deg, #bae6fd, #38bdf8);
+  border-color: var(--sl-accent-cyan);
+  box-shadow: 0 2px 10px rgba(56, 189, 248, 0.35);
+}
+
+/* Speed Slider inside Dock */
+
+/* Bottom HUD Readout (Surface Pointer) */
+.sl-hud-coords {
+  position: absolute;
+  bottom: 24px;
+  left: 28px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 16px;
+  background: rgba(8, 14, 26, 0.88);
+  border: 1px solid rgba(0, 242, 254, 0.32);
+  border-radius: var(--sl-radius-md);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45), 0 0 16px var(--sl-pointer-glow);
+  backdrop-filter: blur(16px);
+  pointer-events: none;
+}
+
+.sl-hud-coords span {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--sl-pointer-color);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sl-hud-coords strong {
+  font-family: var(--sl-font-mono);
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 10px var(--sl-pointer-glow);
+}
+
+.sl-pointer-icon {
+  color: var(--sl-pointer-color);
+  filter: drop-shadow(0 0 6px var(--sl-pointer-glow));
+}
+
+/* ==========================================================================
+   Inspector / Telemetry Rail (Right Panel)
+   TAB POSITIONING: PLACED FIRMLY AT THE VERY TOP!
+   ========================================================================== */
+
+.sl-inspector {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--sl-bg-panel);
+  border-left: 1px solid var(--sl-border);
+  backdrop-filter: blur(24px) saturate(130%);
+  position: relative;
+  z-index: 20;
+}
+
+/* Top Tab Bar of Inspector */
+
+/* Panel Content Body */
+.sl-panel-scroll {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  padding: 20px 22px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.25) transparent;
+}
+
+.sl-panel-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+.sl-panel-scroll::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.25);
+  border-radius: 99px;
+}
+
+/* Card Section Header */
+
+/* Selected Location Chip */
+
+/* Hero Equilibrium Temperature Card */
+
+/* Metric Tiles Grid */
+
+/* Observation Time Row */
+
+/* Search Box */
+.sl-search-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--sl-bg-card);
+  border: 1px solid var(--sl-border);
+  border-radius: var(--sl-radius-md);
+  padding: 0 12px;
+  margin-bottom: 14px;
+}
+
+.sl-search-bar:focus-within {
+  border-color: var(--sl-accent-lunar);
+  box-shadow: 0 0 15px -3px var(--sl-accent-lunar-glow);
+}
+
+.selene-app .sl-search-bar > input {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: auto;
+  height: 40px;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  color: var(--sl-text-primary);
+  padding: 0;
+  font-size: 13px;
+  outline: none;
+}
+
+.selene-app .sl-search-bar > input:hover,
+.selene-app .sl-search-bar > input:focus {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  outline: none;
+}
+
+.sl-search-bar > svg,
+.sl-search-bar > button {
+  flex: 0 0 auto;
+}
+
+.sl-search-results {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: rgba(10, 18, 32, 0.96);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: var(--sl-radius-md);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8);
+  padding: 6px;
+  z-index: 50;
+  backdrop-filter: blur(20px);
+}
+
+.sl-search-item {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  border: none;
+  background: transparent;
+  border-radius: var(--sl-radius-sm);
+  text-align: left;
+}
+
+.sl-search-item:hover {
+  background: rgba(29, 34, 48, 0.08);
+}
+
+.sl-search-item strong {
+  font-size: 13px;
+  color: var(--sl-text-primary);
+}
+
+.sl-search-item small {
+  font-family: var(--sl-font-mono);
+  font-size: 13px;
+  color: var(--sl-accent-cyan);
+}
+
+/* Coordinate Inputs Form */
+
+/* Preset Sites Grid */
+
+/* Forecast Generator Controls */
+.sl-forecast-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.sl-forecast-controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--sl-text-muted);
+  text-transform: uppercase;
+}
+
+.sl-forecast-controls input, .sl-forecast-controls select {
+  height: 38px;
+  padding: 0 10px;
+  background: var(--sl-bg-card);
+  border: 1px solid var(--sl-border);
+  border-radius: var(--sl-radius-sm);
+  color: var(--sl-text-primary);
+  font-family: var(--sl-font-mono);
+  font-size: 13px;
+  outline: none;
+  color-scheme: dark;
+}
+
+.sl-btn-primary {
+  width: 100%;
+  height: 42px;
+  background: linear-gradient(135deg, #d4ed8a, #bef05b);
+  border-color: #d4ed8a;
+  color: #121e06;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  box-shadow: 0 4px 16px -3px rgba(212, 237, 138, 0.4);
+}
+
+.sl-btn-primary:hover:not(:disabled) {
+  background: #e4fca0;
+}
+
+.sl-btn-secondary {
+  width: 100%;
+  height: 38px;
+  background: rgba(29, 34, 48, 0.04);
+  border-color: var(--sl-border);
+  color: var(--sl-text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Science Formula Blocks */
+
+/* Planet Selector Cards (Solar System Mode) */
+
+/* Error Banner */
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.6); }
+  70% { box-shadow: 0 0 0 6px rgba(52, 211, 153, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .sl-workspace {
+    grid-template-columns: minmax(0, 1fr) 360px;
+  }
+}
+
+@media (max-width: 768px) {
+  .selene-app {
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+  }
+  .sl-workspace {
+    display: flex;
+    flex-direction: column;
+  }
+  .sl-viewer {
+    height: 55vh;
+    min-height: 380px;
+    flex-shrink: 0;
+  }
+  .sl-inspector {
+    border-left: none;
+    border-top: 1px solid var(--sl-border);
+  }
+  .sl-floating-dock {
+    width: 90%;
+    overflow-x: auto;
+    justify-content: flex-start;
+  }
+}
+
+/* ==========================================================================
+   HORIZON RADAR & TOPOCENTRIC SKY PLOT
+   ========================================================================== */
+
+.horizon-plot-container {
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+  height: 100%;
+  scrollbar-width: thin;
+}
+
+.horizon-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.horizon-header h2 {
+  margin: 4px 0 2px;
+  font-family: var(--sl-font-heading);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--sl-text-primary);
+}
+
+.horizon-header p {
+  margin: 0;
+  color: var(--sl-text-muted);
+  font-size: 13px;
+}
+
+.horizon-time-stepper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--sl-bg-card);
+  padding: 4px 8px;
+  border: 1px solid var(--sl-border);
+  border-radius: var(--sl-radius-pill);
+}
+
+.horizon-time-stepper button {
+  height: 28px;
+  padding: 0 10px;
+  border-radius: var(--sl-radius-pill);
+  font-size: 13px;
+  font-weight: 700;
+  background: transparent;
+  border: none;
+  color: var(--sl-text-muted);
+}
+
+.horizon-time-stepper button:hover {
+  background: rgba(29, 34, 48, 0.08);
+  color: var(--sl-text-primary);
+}
+
+.horizon-time-stepper button.is-accent {
+  background: rgba(212, 237, 138, 0.2);
+  color: var(--sl-accent-lunar);
+  border: 1px solid rgba(212, 237, 138, 0.4);
+}
+
+.horizon-current-time {
+  font-family: var(--sl-font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--sl-text-primary);
+  padding: 0 8px;
+}
+
+.horizon-content-grid {
+  display: grid;
+  grid-template-columns: 460px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.horizon-radar-card {
+  background: var(--sl-bg-panel);
+  border: 1px solid var(--sl-border);
+  border-radius: var(--sl-radius-lg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(20px);
+}
+
+.horizon-radar-meta {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.radar-legend-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--sl-radius-pill);
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--sl-font-mono);
+}
+
+.radar-legend-tag.is-sun {
+  background: rgba(251, 191, 36, 0.15);
+  border: 1px solid rgba(251, 191, 36, 0.4);
+  color: var(--sl-accent-solar);
+}
+
+.radar-legend-tag.is-earth {
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  color: var(--sl-accent-cyan);
+}
+
+.horizon-plot-caption {
+  margin-top: 14px;
+  display: flex;
+  gap: 16px;
+  font-size: 13px;
+  color: var(--sl-text-muted);
+}
+
+/* Horizon Analysis Rail */
+.horizon-analysis-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.analysis-card {
+  background: var(--sl-bg-panel);
+  border: 1px solid var(--sl-border);
+  border-radius: var(--sl-radius-lg);
+  padding: 20px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+.analysis-card.is-good {
+  border-color: rgba(56, 189, 248, 0.35);
+}
+
+.analysis-card.is-warning {
+  border-color: rgba(248, 113, 113, 0.4);
+}
+
+.analysis-card.is-power {
+  border-color: rgba(251, 191, 36, 0.35);
+}
+
+/* ==========================================================================
+   SITE COMPARISON VIEW
+   ========================================================================== */
+
+/* ==========================================================================
+   MISSION CALCULATOR
+   ========================================================================== */
+
+/* ==========================================================================
+   MISSION CHATBOT & COPILOT
+   ========================================================================== */
+
+/* Floating Copilot Trigger Button */
+
+/* ========================================================================== 
+   BLACK FOREST + INDIGO THEME
+   ========================================================================== */
+
+.selene-app { letter-spacing: -0.006em; }
+.selene-app ::selection { color: #fff; background: rgba(99, 102, 241, 0.58); }
+.selene-app button, .selene-app input, .selene-app select { letter-spacing: 0; }
+.selene-app button:hover:not(:disabled) { border-color: rgba(79, 220, 245, 0.38); box-shadow: 0 8px 24px -18px rgba(99, 102, 241, 0.85); }
+.selene-app :focus-visible { outline-color: #a9bdd0; box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.14); }
+.sl-brand-text strong { font-size: 20px; font-weight: 600; letter-spacing: 0.2em; }
+.sl-brand-text small { color: #a9bdd0; font-family: var(--sl-font-mono); font-size: 13px; letter-spacing: 0.15em; }
+.sl-tz-select { background: linear-gradient(135deg, rgba(5, 22, 17, 0.76), rgba(30, 27, 65, 0.66)); border-color: rgba(79, 220, 245, 0.22); }
+
+.sl-workspace {
+  background:
+    linear-gradient(rgba(79, 220, 245, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79, 220, 245, 0.025) 1px, transparent 1px),
+    radial-gradient(circle at 75% 15%, rgba(79, 70, 229, 0.11), transparent 36%),
+    radial-gradient(circle at 10% 88%, rgba(6, 78, 59, 0.12), transparent 34%);
+  background-size: 38px 38px, 38px 38px, auto, auto;
+}
+.sl-viewer { background: radial-gradient(ellipse 72% 62% at 50% 48%, #101630 0%, #050b10 54%, #020605 100%); }
+.sl-floating-dock, .sl-hud-coords {
+  background: linear-gradient(145deg, rgba(4, 16, 13, 0.9), rgba(24, 22, 54, 0.84));
+  border-color: rgba(79, 220, 245, 0.24);
+  box-shadow: 0 18px 45px -22px rgba(2, 6, 5, 0.95), 0 0 32px -24px rgba(99, 102, 241, 0.8);
+}
+.sl-eyebrow { color: #a9bdd0; font-family: var(--sl-font-mono); font-size: 13px; letter-spacing: 0.15em; }
+.horizon-header h2 { font-weight: 600; letter-spacing: -0.035em; }
+.horizon-header h2 { font-size: 28px; }
+.horizon-header p { color: var(--sl-text-muted); font-size: 14px; line-height: 1.7; }
+
+.sl-search-bar, .sl-forecast-controls input, .sl-forecast-controls select {
+  background: rgba(3, 12, 10, 0.74); border-color: rgba(79, 220, 245, 0.24);
+}
+.sl-forecast-controls input:focus, .sl-forecast-controls select:focus { border-color: #98aeca; box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12); }
+
+.sl-dock-btn.is-active, .sl-dock-btn.is-primary, .sl-btn-primary {
+  color: #11122b; background: linear-gradient(135deg, #c3cfda, #98aeca);
+  border-color: rgba(79, 220, 245, 0.9); box-shadow: 0 10px 28px -14px rgba(99, 102, 241, 0.9);
+}
+.sl-dock-btn.is-active:hover, .sl-dock-btn.is-primary:hover, .sl-btn-primary:hover:not(:disabled) {
+  color: #08091c; background: linear-gradient(135deg, #ddd6fe, #a9bdd0);
+}
+
+.sl-inspector { background: linear-gradient(180deg, rgba(5, 15, 14, 0.96), rgba(12, 13, 29, 0.96)); border-left-color: rgba(79, 220, 245, 0.2); }
+
+.horizon-time-stepper { background: linear-gradient(135deg, rgba(4, 20, 15, 0.72), rgba(25, 23, 56, 0.7)); border-color: rgba(79, 220, 245, 0.2); }
+.horizon-time-stepper button.is-accent {
+  color: #c3cfda; background: rgba(99, 102, 241, 0.16); border-color: rgba(79, 220, 245, 0.48);
+}
+.horizon-radar-card, .analysis-card {
+  background: linear-gradient(145deg, rgba(5, 18, 15, 0.94), rgba(19, 18, 43, 0.92));
+  border-color: rgba(79, 220, 245, 0.2);
+  box-shadow: 0 22px 55px -28px rgba(0, 0, 0, 0.95), inset 0 1px rgba(255, 255, 255, 0.025);
+}
+.analysis-card.is-good { border-color: rgba(79, 220, 245, 0.55); box-shadow: 0 20px 52px -28px rgba(99, 102, 241, 0.8), inset 0 1px rgba(255, 255, 255, 0.03); }
+
+.sl-panel-scroll, .horizon-plot-container { scrollbar-color: rgba(79, 220, 245, 0.42) transparent; }
+.sl-panel-scroll::-webkit-scrollbar-thumb, .horizon-plot-container::-webkit-scrollbar-thumb { background: rgba(79, 220, 245, 0.34); border-radius: 999px; }
+
+/* ========================================================================== 
+   LIGHT INDIGO THEME (#4fdcf5, #0a1820)
+   ========================================================================== */
+
+.selene-app {
+  background:
+    radial-gradient(circle at 18% -10%, rgba(79, 220, 245, 0.22), transparent 45%),
+    radial-gradient(circle at 88% 110%, rgba(79, 220, 245, 0.18), transparent 50%),
+    linear-gradient(145deg, #fcfbfe 0%, #f8f9fd 52%, #f5f1fc 100%);
+  color: var(--text-1);
+}
+
+.selene-app ::selection { color: var(--text-1); background: var(--theme-indigo-light); }
+.selene-app button:hover:not(:disabled) {
+  border-color: var(--theme-indigo-light);
+  box-shadow: 0 4px 16px -2px rgba(79, 220, 245, 0.5);
+}
+.selene-app :focus-visible {
+  outline-color: var(--theme-indigo-light);
+  box-shadow: 0 0 0 4px rgba(79, 220, 245, 0.35);
+}
+.sl-brand-text small,
+.sl-eyebrow { color: var(--indigo-deep); font-weight: 750; }
+
+.sl-timezone-control,
+.horizon-time-stepper {
+  background: var(--surface-1);
+  border: 1.5px solid var(--border-indigo);
+  border-radius: var(--sl-radius-md);
+  box-shadow: 0 2px 8px rgba(79, 220, 245, 0.15);
+}
+.sl-dock-btn.is-active,
+.sl-dock-btn.is-primary,
+.sl-btn-primary {
+  color: var(--text-1);
+  background: linear-gradient(135deg, var(--theme-indigo-light), var(--indigo-500));
+  border-color: var(--indigo-500);
+  box-shadow: 0 2px 10px rgba(79, 220, 245, 0.45);
+  font-weight: 750;
+}
+.sl-dock-btn.is-active:hover,
+.sl-dock-btn.is-primary:hover,
+.sl-btn-primary:hover:not(:disabled) {
+  color: var(--text-1);
+  background: linear-gradient(135deg, var(--indigo-300), var(--theme-indigo-light));
+  box-shadow: 0 4px 14px rgba(79, 220, 245, 0.6);
+}
+
+.sl-nav-tail { gap: 10px; }
+.sl-timezone-control {
+  min-width: 210px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 5px 10px;
+  border: 1.5px solid var(--border-indigo);
+  border-radius: var(--sl-radius-md);
+  color: var(--text-1);
+}
+.sl-timezone-control > svg { flex: 0 0 auto; color: var(--indigo-deep); }
+.sl-timezone-control > div { min-width: 0; display: grid; gap: 1px; }
+.sl-timezone-control .sl-tz-select {
+  width: 100%;
+  height: 21px;
+  padding: 0 20px 0 0;
+  border: 0;
+  background: transparent;
+  color: var(--text-1);
+  font-size: 13px;
+  font-weight: 650;
+}
+.sl-timezone-control span {
+  overflow: hidden;
+  color: var(--text-muted);
+  font-family: var(--sl-font-mono);
+  font-size: 13px;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sl-workspace {
+  background:
+    linear-gradient(rgba(79, 220, 245, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79, 220, 245, 0.08) 1px, transparent 1px),
+    radial-gradient(circle at 76% 14%, rgba(79, 220, 245, 0.14), transparent 36%),
+    radial-gradient(circle at 8% 90%, rgba(79, 220, 245, 0.10), transparent 34%),
+    var(--bg-app);
+  background-size: 38px 38px, 38px 38px, auto, auto;
+}
+.sl-viewer {
+  background: radial-gradient(ellipse 72% 62% at 50% 48%, #161228 0%, #0c0818 54%, #040208 100%);
+}
+.sl-floating-dock,
+.sl-hud-coords {
+  background: rgba(29, 34, 48, 0.94);
+  backdrop-filter: blur(16px);
+  border: 1.5px solid var(--border-indigo);
+  box-shadow: 0 8px 24px rgba(79, 220, 245, 0.22);
+  color: var(--text-1);
+}
+
+.sl-inspector {
+  background: rgba(29, 34, 48, 0.97);
+  backdrop-filter: blur(20px);
+  border-left-color: var(--border);
+  color: var(--text-1);
+}
+
+.sl-search-bar,
+.sl-forecast-controls input,
+.sl-forecast-controls select {
+  color-scheme: light;
+  background: var(--surface-1);
+  border: 1.5px solid var(--border-indigo);
+  color: var(--text-1);
+}
+.sl-forecast-controls input:focus,
+.sl-forecast-controls select:focus {
+  border-color: var(--indigo-deep);
+  box-shadow: 0 0 0 3px var(--accent-dim);
+}
+
+.horizon-radar-card,
+.analysis-card {
+  background: var(--surface-1);
+  border: 1.5px solid var(--border-indigo);
+  box-shadow: 0 4px 18px rgba(79, 220, 245, 0.16);
+  color: var(--text-1);
+}
+.analysis-card.is-good,
+.analysis-card.is-warning,
+.analysis-card.is-power {
+  border-color: var(--indigo-400);
+  box-shadow: 0 8px 24px rgba(79, 220, 245, 0.25);
+}
+.horizon-time-stepper button.is-accent {
+  color: var(--text-1);
+  background: var(--theme-indigo-light);
+  border-color: var(--indigo-500);
+  font-weight: 750;
+}
+.text-rose { color: var(--danger); }
+.radar-legend-tag.is-sun,
+.radar-legend-tag.is-earth {
+  color: var(--text-1);
+  background: var(--indigo-100);
+  border-color: var(--border-indigo);
+  font-weight: 700;
+}
+
+.horizon-current-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+.chart-grid { stroke: var(--border); }
+.chart-cursor { stroke: var(--indigo-deep); }
+
+.sl-panel-scroll,
+.horizon-plot-container { scrollbar-color: var(--theme-indigo-light) transparent; }
+.sl-panel-scroll::-webkit-scrollbar-thumb,
+.horizon-plot-container::-webkit-scrollbar-thumb {
+  background: var(--theme-indigo-light);
+  border-radius: 999px;
+}
+
+@media (max-width: 1180px) {
+  .sl-timezone-control { min-width: 170px; }
+  .sl-timezone-control span { display: none; }
+}
+
+@media (max-width: 768px) {
+  .sl-nav-tail { width: 100%; justify-content: space-between; }
+  .sl-timezone-control { min-width: 190px; }
+  .sl-timezone-control span { display: block; }
+}
+
+
+

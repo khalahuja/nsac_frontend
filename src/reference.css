@@ -1,0 +1,158 @@
+/* Reference theme: compact lunar mission workspace. Light Indigo Theme (#4fdcf5, #0a1820) */
+
+.selene-app { background: var(--bg-app, var(--bg-app)); color: var(--text-1, #0a1820); font-size: 15px; font-family: var(--font-body); }
+.selene-app .mc-bar { align-items: center; gap: 12px; padding: 8px 18px; background: var(--surface-1); border-bottom: 1px solid var(--line-1); overflow-x: visible; }
+.selene-app .mc-group { align-items: center; gap: 12px; min-width: 0; }
+.selene-app form.mc-group { flex: 1; }
+.selene-app .mc-bar > div.mc-group { margin-left: auto; flex: none; }
+.selene-app .mc-divider { display: none; }
+.selene-app .mc-site, .selene-app .mc-field { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.selene-app .mc-site { flex: 1; max-width: 330px; }
+.selene-app .mc-label { font-size: 13px; letter-spacing: 0; color: var(--text-muted, #585542); font-weight: 600; }
+.selene-app .mc-label svg { display: none; }
+.selene-app .mc-site select, .selene-app .mc-site strong { width: 100%; min-width: 0; height: 32px; line-height: 30px; padding: 0 9px; background: var(--surface-1); border: 1px solid var(--line-2); border-radius: 6px; font-size: 14px; color: var(--text-1); }
+.selene-app .mc-field input { width: 100px; height: 32px; padding: 0 9px; font-size: 14px; font-weight: 500; border-radius: 6px; background: var(--surface-1); border: 1px solid var(--line-2); color: var(--text-1); }
+.selene-app .mc-field-time .mc-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.selene-app .mc-field-time input { width: 215px; }
+.selene-app .mc-btn { height: 32px; padding: 0 13px; font-size: 14px; font-weight: 600; border-radius: 6px; background: var(--surface-1); border: 1px solid var(--line-2); color: var(--text-1); }
+.selene-app .mc-btn svg { display: none; }
+.selene-app .mc-btn-primary { background: linear-gradient(145deg, var(--indigo-100), #4fdcf5); color: #0a1820; border-color: #4fdcf5; font-weight: 700; box-shadow: 0 2px 6px rgba(79, 220, 245, 0.4); }
+.selene-app .sl-workspace { grid-template-columns: minmax(0, 1fr) 365px; background: var(--bg-app, var(--bg-app)); }
+.selene-app .sl-viewer { background: #12101e; min-height: 0; }
+.selene-app .sl-inspector { width: auto; margin: 10px 12px 10px 0; height: calc(100% - 20px); border: 1px solid var(--line-2); border-radius: 10px; background: var(--surface-1); box-shadow: 0 2px 8px rgba(12, 16, 27, 0.04); }
+.selene-app .sl-panel-scroll { padding: 0 14px 14px; }
+.selene-app .sl-panel-scroll > div > * + * { margin-top: 14px; }
+.condition-status { padding: 3px 8px; font-size: 13px; font-weight: 600; border: 1px solid var(--line-2); border-radius: 99px; color: var(--text-1); white-space: nowrap; }
+.condition-status.is-sunlit { border-color: #86efac; background: #f0fdf4; color: #8ce0ad; }
+.reference-tools { border-top: 1px solid var(--line-1); padding-top: 10px; }
+.reference-tools summary { cursor: pointer; color: var(--text-indigo); font-size: 14px; font-weight: 600; }
+.selene-app .sl-floating-dock { bottom: 10px; gap: 5px; padding: 5px; border-color: var(--line-2); border-radius: 8px; background: var(--surface-1); box-shadow: 0 4px 12px rgba(12, 16, 27, 0.08); }
+.selene-app .sl-dock-btn { padding: 4px 10px; font-size: 13px; background: var(--surface-1); color: var(--text-1); border: 1px solid var(--line-2); border-radius: 6px; }
+.selene-app .sl-dock-btn:hover { background: var(--indigo-100); border-color: #4fdcf5; }
+.selene-app .sl-hud-coords { left: 12px; bottom: 55px; padding: 5px 8px; border-color: var(--line-2); background: var(--surface-1); color: var(--text-1); border-radius: 6px; font-size: 13px; }
+.selene-app .horizon-plot-container { padding: 14px 18px; background: var(--bg-app, var(--bg-app)); }
+.selene-app .horizon-header { margin-bottom: 12px; }
+.selene-app .horizon-header h2 { font-size: 22px; color: var(--text-1); font-weight: 700; }
+.selene-app .horizon-header p { font-size: 14px; color: var(--text-muted, #585542); }
+.selene-app .horizon-content-grid { grid-template-columns: 220px minmax(0, 1fr) 260px; gap: 12px; }
+.selene-app .horizon-analysis-rail { display: contents; }
+.selene-app .horizon-radar-card { grid-column: 2; grid-row: 1; position: relative; padding: 12px; border: 1px solid var(--line-2); border-radius: 12px; background: var(--surface-1); box-shadow: 0 2px 8px rgba(12, 16, 27, 0.04); }
+.selene-app .horizon-analysis-rail > .analysis-card:first-child { grid-column: 1; grid-row: 1; }
+.selene-app .horizon-analysis-rail > .analysis-card.is-power { grid-column: 3; grid-row: 1; }
+.selene-app .analysis-card { padding: 14px; border: 1px solid var(--line-2); border-radius: 12px; background: var(--surface-1); box-shadow: 0 2px 8px rgba(12, 16, 27, 0.04); }
+.selene-app .hz3-canvas { min-height: 360px; height: min(60vh, 620px); border-radius: 8px; overflow: hidden; }
+.selene-app .swx-page { grid-template-columns: 265px minmax(0, 1fr); background: var(--bg-app, var(--bg-app)); }
+.selene-app .swx-rail { padding: 14px 12px; gap: 12px; background: var(--surface-1); border-color: var(--line-1); }
+.selene-app .swx-block { padding: 12px; gap: 9px; background: var(--surface-2); border-color: var(--line-2); border-radius: 8px; }
+.selene-app .swx-block h3 { font-size: 14px; color: var(--text-1); font-weight: 700; }
+.selene-app .swx-block input, .selene-app .swx-block select { min-height: 30px; padding: 5px 7px; font-size: 13px; background: var(--surface-1); border: 1px solid var(--line-2); color: var(--text-1); border-radius: 6px; }
+.selene-app .swx-btn { min-height: 30px; font-size: 13px; padding: 5px 12px; border-radius: 6px; }
+.selene-app .swx-main { padding: 14px 16px 24px; gap: 12px; }
+.selene-app .cmpx-chart-grid { gap: 12px; }
+.selene-app input:focus-visible, .selene-app select:focus-visible, .selene-app button:focus-visible, .selene-app summary:focus-visible { outline: 2px solid #4fdcf5; outline-offset: 2px; }
+
+@media (max-width: 1150px) {
+  .selene-app .mc-bar { gap: 10px; padding: 8px 12px; flex-wrap: wrap; }
+  .selene-app .mc-group { gap: 8px; }
+  .selene-app .mc-field input { width: 82px; }
+  .selene-app .mc-field-time input { width: 200px; }
+  .selene-app .sl-workspace { grid-template-columns: minmax(0, 1fr) 330px; }
+  .selene-app .horizon-content-grid { grid-template-columns: 185px minmax(0, 1fr) 220px; }
+}
+@media (max-width: 900px) {
+  .selene-app .mc-bar > div.mc-group { margin-left: 0; }
+  .selene-app form.mc-group { flex-wrap: wrap; flex-basis: 100%; }
+  .selene-app .mc-site { max-width: none; }
+  .selene-app .sl-workspace { grid-template-columns: 1fr; overflow-y: auto; grid-auto-rows: auto; }
+  .selene-app .sl-viewer { min-height: 55vh; }
+  .selene-app .sl-inspector { margin: 10px; height: auto; max-height: none; }
+  .selene-app .sl-panel-scroll { overflow: visible; }
+  .selene-app .horizon-content-grid { grid-template-columns: minmax(0, 1fr); }
+  .selene-app .horizon-radar-card, .selene-app .horizon-analysis-rail > .analysis-card { grid-column: 1; grid-row: auto; }
+  .selene-app .horizon-radar-card { order: -1; }
+  .selene-app .swx-page { grid-template-columns: 1fr; height: 100%; overflow-y: auto; }
+  .selene-app .swx-rail, .selene-app .swx-main { overflow: visible; }
+}
+@media (max-width: 600px) {
+  .selene-app .mc-site { flex-basis: 100%; }
+  .selene-app .mc-field { flex: 1; }
+  .selene-app .mc-field input { width: 100%; min-width: 0; }
+  .selene-app .mc-bar > div.mc-group { width: 100%; }
+  .selene-app .mc-field-time input { width: 100%; }
+  .selene-app .cmpx-chart-grid { grid-template-columns: 1fr; }
+  .selene-app .sl-floating-dock { left: 12px; right: 12px; transform: none; flex-wrap: wrap; }
+}
+
+/* Site rows mirror the comparison screen in the supplied reference. */
+
+/* Keep all four engineering cards in view; detailed explanations expand. */
+
+/* Compact settings and full-width comparison */
+.selene-app .cmpx-cursor { padding: 8px 10px; font-size: 13px; gap: 6px; }
+.selene-app .swx-table { font-size: 13.5px; }
+.selene-app .swx-table th, .selene-app .swx-table td { padding: 9px 10px; }
+.selene-app .swx-table td.swx-len { font-size: 15px; }
+.selene-app .swx-note { font-size: 13px; }
+.selene-app .swx-link { font-size: 13px; }
+
+.selene-app, .selene-app button, .selene-app input, .selene-app select { font-family: var(--font-body); }
+.selene-app .mc-btn-primary { color: var(--text-1); border-color: #4fdcf5; }
+
+/* Science filters and four equation cards */
+.selene-app .swx-page { grid-template-columns: 240px minmax(0, 1fr); }
+.selene-app .swx-filter-card { display: grid; gap: 10px; padding: 12px; border: 1px solid var(--line-2); border-radius: 8px; background: var(--surface-1); }
+.selene-app .swx-filter-card h2 { margin: 0; font-size: 16px; color: var(--text-1); }
+.selene-app .swx-filter-field { display: grid; gap: 5px; font-size: 13px; color: var(--text-2, #3a3828); }
+.selene-app .swx-filter-card .swx-pair { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 6px; }
+.selene-app .swx-filter-card input[type=number] { width: 100%; min-width: 0; height: 32px; padding: 5px 8px; background: var(--surface-1); border: 1px solid var(--line-2); border-radius: 6px; color: var(--text-1); font-size: 13.5px; }
+.selene-app .swx-filter-switch { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 13px; }
+.selene-app .swx-filter-switch input { appearance: none; width: 32px; height: 18px; border: 1px solid var(--line-2); border-radius: 99px; background: var(--surface-3); cursor: pointer; flex: none; }
+.selene-app .swx-filter-switch input::before { content: ''; display: block; width: 12px; height: 12px; margin: 2px; border-radius: 50%; background: var(--surface-1); transition: transform 120ms; }
+.selene-app .swx-filter-switch input:checked { background: #4fdcf5; border-color: #4fdcf5; }
+.selene-app .swx-filter-switch input:checked::before { transform: translateX(14px); }
+.selene-app .swx-apply { justify-content: center; background: #4fdcf5; color: #0a1820; border-color: #4fdcf5; font-weight: 700; }
+.selene-app .swx-main-head h2 { font-size: 19px; }
+.selene-app .swx-table { font-size: 13.5px; }
+.selene-app .swx-table th, .selene-app .swx-table td { padding: 8px 10px; }
+@media (max-width: 750px) { .selene-app .swx-page { grid-template-columns: minmax(0, 1fr); } }
+
+/* Compare Sites */
+.selene-app .cmpx-chart-grid .forecast-chart { padding: 10px; background: var(--surface-1); border: 1px solid var(--line-2); border-radius: 8px; }
+.selene-app .cmpx-chart-grid .forecast-chart svg { width: 100%; min-width: 280px; height: auto; }
+.selene-app .cmpx-chart-grid .chart-heading { margin-bottom: 7px; }
+.selene-app .cmpx-sources { font-size: 13px; }
+
+/* DTE side containers */
+.selene-app .horizon-analysis-rail > .dte-geometry { grid-column: 1; grid-row: 1; }
+.selene-app .dte-geometry, .selene-app .dte-power { align-self: start; padding: 14px; border: 1px solid var(--line-2); border-radius: 10px; background: var(--surface-1); box-shadow: 0 2px 8px rgba(12, 16, 27, 0.04); }
+.selene-app .dte-geometry h3, .selene-app .dte-power h3 { margin: 0 0 14px; font-size: 15px; font-weight: 700; color: var(--text-1); }
+.selene-app .dte-geometry dl { margin: 0; }
+.selene-app .dte-geometry dl > div { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--line-1); }
+.selene-app .dte-geometry dl > div:last-child { border-bottom: 0; }
+.selene-app .dte-geometry dt { font-size: 13px; color: var(--text-muted, #585542); }
+.selene-app .dte-geometry dt small { display: block; font-size: 13px; }
+.selene-app .dte-geometry dd { display: flex; align-items: center; gap: 6px; margin: 0; color: var(--text-1); font-weight: 700; font-size: 14px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.selene-app .dte-geometry dd small { font-size: 13px; color: var(--text-muted, #585542); }
+.selene-app .dte-geometry dd.dte-visible { color: #8ce0ad; }
+.selene-app .dte-geometry dd.dte-hidden { color: #ffabb0; }
+.selene-app .dte-geometry dd.dte-solar { color: #b45309; }
+.selene-app .dte-geometry dd i { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.selene-app .dte-power-fields { display: grid; gap: 9px; }
+.selene-app .dte-power-fields label { display: flex; align-items: center; justify-content: space-between; gap: 10px; color: var(--text-2, #3a3828); font-size: 13px; font-weight: 600; }
+.selene-app .dte-power-fields input { width: 90px; min-width: 0; height: 32px; padding: 5px 8px; border: 1px solid var(--line-2); border-radius: 6px; color: var(--text-1); background: var(--surface-1); font-size: 14px; }
+.selene-app .dte-orientation { margin: 14px 0 0; padding: 0; border: 0; }
+.selene-app .dte-orientation legend { margin-bottom: 7px; color: var(--text-muted, #585542); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+.selene-app .dte-orientation > div { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--line-2); border-radius: 6px; overflow: hidden; background: var(--indigo-100); }
+.selene-app .dte-orientation button { padding: 7px 4px; border: 0; border-radius: 0; background: transparent; color: var(--text-1); font-size: 13px; font-weight: 600; cursor: pointer; }
+.selene-app .dte-orientation button[aria-pressed=true] { background: #4fdcf5; color: #0a1820; font-weight: 700; }
+.selene-app .dte-power-result { display: grid; gap: 7px; margin-top: 18px; padding: 12px; background: var(--surface-2); border: 1px solid var(--line-2); border-radius: 8px; }
+.selene-app .dte-power-result > span { font-size: 13px; color: var(--text-muted, #585542); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+.selene-app .dte-power-result strong { display: flex; align-items: center; gap: 10px; color: var(--text-1); font-size: 24px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.selene-app .dte-power-result strong svg { color: #b45309; }
+.selene-app .dte-power-result > small { font-size: 13px; color: var(--text-muted, #585542); }
+.selene-app .dte-additional { margin-top: 14px; font-size: 13px; color: var(--text-2, #3a3828); }
+.selene-app .dte-additional summary { cursor: pointer; color: var(--text-indigo); font-weight: 600; }
+.selene-app .dte-additional p { margin: 8px 0; line-height: 1.5; color: var(--text-2, #3a3828); }
+.selene-app .dte-additional label { display: grid; gap: 6px; margin-top: 10px; font-weight: 600; color: var(--text-1); }
+.selene-app .dte-additional select { width: 100%; padding: 6px; color: var(--text-1); background: var(--surface-1); border: 1px solid var(--line-2); border-radius: 6px; }
+@media (max-width: 900px) { .selene-app .horizon-analysis-rail > .dte-geometry { grid-column: 1; grid-row: auto; } }

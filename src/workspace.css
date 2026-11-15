@@ -1,0 +1,604 @@
+/* ==========================================================================
+   workspace.css — Unified Aerospace Layout & Workspace Styles
+   ========================================================================== */
+
+.selene-app {
+  width: 100%;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.sl-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+  flex-shrink: 0;
+}
+.sl-brand-logo {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+.sl-brand-text strong {
+  font-family: var(--sl-font-heading, 'Sora', sans-serif);
+  font-size: 16px;
+  font-weight: 750;
+  letter-spacing: 0.16em;
+  color: var(--text-1);
+}
+
+/* Primary Navigation Pill Tabs */
+
+.sl-nav-tail {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.sl-timezone-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: var(--surface-1);
+  border: 1px solid var(--border-indigo);
+  border-radius: 6px;
+  color: var(--text-2);
+  font-size: 13px;
+}
+.sl-tz-select {
+  background: transparent;
+  border: none;
+  color: var(--text-1);
+  font-size: 13px;
+  outline: none;
+  cursor: pointer;
+}
+.sl-tz-select option {
+  background: var(--surface-1);
+  color: var(--text-1);
+}
+
+/* Offline badge */
+
+/* Main Workspace Grid */
+.sl-workspace {
+  flex: 1 1 0;
+  min-height: 0;
+  min-width: 0;
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 390px;
+  background: var(--bg-app);
+}
+
+/* 3D Moon Viewer Overlays */
+
+.sl-floating-dock {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  background: rgba(29, 34, 48, 0.92);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-indigo);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(79, 220, 245, 0.25);
+  z-index: 10;
+}
+.selene-app .sl-dock-btn {
+  height: 30px;
+  padding: 0 12px;
+  font-size: 13px;
+  border-radius: 6px;
+  background: var(--indigo-50);
+  border: 1px solid var(--border-indigo);
+  color: var(--text-1);
+}
+.selene-app .sl-dock-btn:hover {
+  background: var(--theme-indigo-light);
+  color: var(--text-1);
+}
+.selene-app .sl-dock-btn.is-active {
+  background: var(--theme-indigo-light);
+  border-color: var(--indigo-500);
+  color: var(--text-1);
+  font-weight: 700;
+}
+.selene-app .sl-dock-btn.is-primary {
+  background: linear-gradient(135deg, var(--theme-indigo-light), var(--indigo-500));
+  color: var(--text-1);
+  border-color: var(--indigo-500);
+  font-weight: 750;
+}
+
+.sl-hud-coords {
+  position: absolute;
+  bottom: 16px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 12px;
+  background: rgba(29, 34, 48, 0.92);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-indigo);
+  border-radius: 8px;
+  font-size: 13px;
+  z-index: 10;
+}
+.sl-hud-coords span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--text-3);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.sl-hud-coords strong {
+  font-family: var(--sl-font-mono, monospace);
+  font-size: 13px;
+  color: var(--text-1);
+}
+
+/* Right Inspector Panel */
+.sl-inspector {
+  width: 390px;
+  height: 100%;
+  border-left: 1px solid var(--sl-border);
+  background: rgba(29, 34, 48, 0.96);
+  backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.sl-panel-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Forecast & Science Windows Page */
+.sl-forecast-page {
+  grid-column: 1 / -1;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  overflow-y: auto;
+  padding: 0 28px 40px;
+  scrollbar-gutter: stable;
+}
+
+.sl-forecast-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 18px 0;
+  background: rgba(5, 8, 15, 0.95);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--sl-border);
+}
+.sl-forecast-header h1 {
+  margin: 4px 0 4px;
+  font-size: clamp(24.288px, 2.76vw, 33.12px);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+.sl-forecast-header p,
+.sl-forecast-results-heading p {
+  margin: 0;
+  color: var(--sl-text-muted);
+  font-size: 14px;
+}
+.sl-forecast-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.sl-forecast-page button {
+  min-height: 38px;
+  padding: 8px 14px;
+  font-size: 14px;
+  border-radius: 7px;
+}
+.selene-app .sl-csv-button {
+  background: #c3cfda;
+  border-color: #c3cfda;
+  color: #15172b;
+  font-weight: 700;
+  box-shadow: 0 4px 16px rgba(79, 220, 245, 0.25);
+}
+.selene-app .sl-csv-button:hover:not(:disabled) {
+  background: #c6f5fd;
+  color: #15172b;
+}
+
+.sl-forecast-context {
+  display: grid;
+  grid-template-columns: minmax(180px, 1.2fr) 1fr 1fr auto;
+  gap: 16px;
+  align-items: center;
+  margin: 18px 0 14px;
+  padding: 14px 18px;
+  background: rgba(29, 34, 48, 0.03);
+  border: 1px solid var(--sl-border);
+  border-radius: 10px;
+}
+.sl-forecast-context label,
+.sl-forecast-context > div {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+.sl-forecast-context label,
+.sl-forecast-context span {
+  color: var(--sl-text-muted);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.sl-forecast-context strong {
+  color: var(--sl-text-primary);
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+.sl-forecast-context select,
+.sl-forecast-controls input,
+.sl-forecast-controls select {
+  width: 100%;
+  min-width: 0;
+  min-height: 36px;
+  padding: 6px 10px;
+  border: 1px solid var(--sl-border);
+  border-radius: 6px;
+  color: var(--sl-text-primary);
+  background: #0b0d15;
+  font-size: 14px;
+}
+
+.sl-forecast-page .sl-forecast-controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 0.8fr) auto;
+  gap: 14px;
+  align-items: end;
+  padding: 16px 18px;
+  border: 1px solid var(--sl-border);
+  border-radius: 10px;
+  background: rgba(29, 34, 48, 0.02);
+}
+.sl-forecast-page .sl-forecast-controls label {
+  font-size: 13px;
+  gap: 6px;
+}
+
+.sl-forecast-results {
+  margin-top: 24px;
+}
+.sl-forecast-results-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.sl-forecast-results-heading h2 {
+  margin: 0 0 4px;
+  font-size: 20px;
+}
+.sl-forecast-results-heading > span {
+  color: var(--sl-text-muted);
+  font-size: 13px;
+}
+
+.sl-forecast-chart-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+.sl-forecast-chart-grid .forecast-chart {
+  min-width: 0;
+  padding: 16px 18px;
+  background: #0d101b;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+}
+.selene-app .chart-heading {
+  flex-wrap: wrap;
+  padding: 0;
+  gap: 6px 12px;
+  margin-bottom: 14px;
+}
+.sl-workspace .chart-heading span {
+  color: #e5e7eb;
+  font-size: 15px;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.selene-app .chart-heading strong {
+  color: #c3cfda;
+  font-size: 15px;
+}
+.chart-plot-scroll {
+  overflow-x: auto;
+}
+.selene-app .forecast-chart svg {
+  width: 100%;
+  height: auto;
+  min-width: 440px;
+  touch-action: pan-y;
+}
+.selene-app .chart-axis {
+  fill: #9aa1b4;
+  font-size: 13px;
+}
+.chart-readout {
+  min-height: 32px;
+  padding-top: 10px;
+  color: #a0a6a6;
+  font-size: 13px;
+}
+
+.sl-forecast-empty {
+  display: grid;
+  justify-items: center;
+  padding: 48px 24px;
+  text-align: center;
+  border: 1px dashed var(--sl-border);
+  border-radius: 12px;
+}
+.sl-forecast-empty h2 {
+  margin: 14px 0 6px;
+  font-size: 20px;
+}
+.sl-forecast-empty p {
+  max-width: 52ch;
+  margin: 0;
+  color: var(--sl-text-muted);
+  font-size: 14px;
+}
+.sl-forecast-notice {
+  padding: 12px 16px;
+  background: rgba(79, 220, 245, 0.1);
+  border: 1px solid rgba(79, 220, 245, 0.25);
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* Science & Calculation Tools */
+.science-card {
+  padding: 18px;
+  margin: 18px 0;
+  border: 1px solid var(--sl-border);
+  border-radius: 12px;
+  background: #0d101b;
+  min-width: 0;
+}
+.science-card h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 6px;
+  font-size: 20px;
+}
+.science-card p {
+  margin: 6px 0;
+  font-size: 14px;
+}
+.science-note {
+  color: #a0a6a6;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.science-card label,
+.science-cursor label {
+  display: grid;
+  gap: 6px;
+  color: var(--sl-text-secondary);
+  font-size: 13px;
+  min-width: 0;
+}
+.science-card input[type='file'] {
+  width: 100%;
+  min-width: 0;
+  padding: 8px 10px;
+  min-height: 36px;
+  border: 1px solid var(--sl-border);
+  border-radius: 6px;
+  background: #0b0d15;
+  color: #eef2ff;
+  font-size: 13px;
+  color-scheme: dark;
+}
+.science-card button {
+  padding: 8px 14px;
+  min-height: 36px;
+  font-size: 13px;
+}
+.science-card table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  text-align: left;
+}
+.science-card th,
+.science-card td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--sl-border);
+  white-space: nowrap;
+}
+.science-card th {
+  position: sticky;
+  top: 0;
+  background: #0d101b;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #a0a6a6;
+}
+.science-cursor {
+  padding: 14px 18px;
+  margin: 16px 0;
+  background: rgba(79, 220, 245, 0.08);
+  border: 1px solid var(--sl-border);
+  border-radius: 8px;
+}
+.science-cursor input[type='range'],
+.map-layer-controls input[type='range'] {
+  width: 100%;
+  min-height: 26px;
+  accent-color: #a9bdd0;
+}
+
+.science-layer-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(65px, 1fr));
+  gap: 6px;
+  margin: 12px 0;
+}
+.science-layer-buttons button {
+  height: 30px;
+  font-size: 13px;
+  border-radius: 6px;
+}
+.selene-app .science-layer-buttons button[aria-pressed='true'] {
+  color: #10132a;
+  background: #c3cfda;
+  border-color: #c3cfda;
+  font-weight: 650;
+}
+
+.map-layer-controls {
+  margin-top: 0;
+  padding: 14px;
+}
+.map-layer-controls h2 {
+  font-size: 16px;
+  font-weight: 650;
+}
+.map-layer-controls pre {
+  overflow-x: auto;
+  padding: 8px;
+  background: #090b12;
+  font-size: 13px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  user-select: text;
+}
+.map-layer-controls summary {
+  cursor: pointer;
+  padding: 8px 0;
+  font-size: 13px;
+  color: #98aeca;
+}
+.science-map-legend {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  margin: 12px 0;
+  font-size: 13px;
+}
+.science-map-legend > div {
+  grid-column: 1 / -1;
+  height: 8px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #3038e5, #26d5d5, #40e52a, #e5db30, #e53030);
+}
+.science-map-legend > span:last-child {
+  text-align: right;
+}
+
+@media (max-width: 1200px) {
+  .sl-forecast-page .sl-forecast-controls,
+  .sl-forecast-context {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .sl-forecast-chart-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .sl-workspace {
+    grid-template-columns: 1fr;
+  }
+  .sl-inspector {
+    width: 100%;
+    height: 420px;
+    border-left: none;
+    border-top: 1px solid var(--sl-border);
+  }
+}
+
+
+/* Map controls float over the top-right of the Moon stage. */
+.selene-app .sl-map-overlay {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 25;
+  width: min(340px, calc(100% - 32px));
+  border: 1px solid var(--sl-border);
+  border-radius: 12px;
+  background: rgba(12, 17, 30, .96);
+  box-shadow: 0 12px 32px #0005;
+  backdrop-filter: blur(12px);
+}
+.sl-map-overlay > summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 16px;
+  color: var(--sl-text-primary);
+  font-size: 14px;
+  font-weight: 650;
+  cursor: pointer;
+  list-style: none;
+}
+.sl-map-overlay > summary::-webkit-details-marker { display: none; }
+.sl-map-overlay > summary::after { content: '+'; margin-left: auto; font-size: 18px; }
+.sl-map-overlay[open] > summary::after { content: '\2212'; }
+.sl-map-overlay-content {
+  max-height: min(560px, calc(100dvh - 290px));
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+}
+.selene-app .sl-map-overlay .map-layer-controls { margin: 0; padding: 0 16px 16px; border: 0; background: none; box-shadow: none; }
+.sl-map-overlay .map-layer-controls > h2 { display: none; }
+.selene-app .sl-map-overlay .science-layer-buttons { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.selene-app .sl-map-overlay .science-layer-buttons button { min-width: 0; padding: 8px 4px; font-size: 13px; }
+.sl-map-overlay input[type=file] { width: 100%; min-width: 0; box-sizing: border-box; }
+@media (max-width: 768px) {
+  .selene-app .sl-map-overlay { top: 12px; right: 12px; width: min(310px, calc(100% - 24px)); }
+  .sl-map-overlay-content { max-height: 180px; }
+}
+
+/* Group the main navigation by user intent without changing bookmarkable URLs. */
+
+/* South-pole labels stay readable on the globe without becoming large panels. */
+.sl-globe-site-label {
+  max-width: 122px; padding: 4px 7px; color: #e8eef8; background: rgba(5,10,18,.9);
+  border: 1px solid rgba(79, 220, 245,.45); border-radius: 5px; box-shadow: 0 3px 12px #0008;
+  font: 600 10px/1.2 Inter,system-ui,sans-serif; white-space: normal; pointer-events: auto;
+}
+.sl-globe-site-label:hover,.sl-globe-site-label.is-selected { color: #111827; background: #f6c967; border-color: #fde68a; }

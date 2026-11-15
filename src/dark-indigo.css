@@ -1,0 +1,67 @@
+/* Final dark/light-indigo layer for older page-specific rules. */
+html, body, #root { background: #0a1820; color: var(--text-1); }
+.selene-app { color-scheme: dark; background: var(--bg-app); color: var(--text-1); }
+.selene-app a { color: var(--text-indigo); }
+.selene-app a:hover { color: var(--indigo-800); }
+
+/* Chrome, atlas, and controls */
+.selene-app .sl-navbar,
+.selene-app .sl-inspector,
+.selene-app .sl-map-overlay,
+.selene-app .sl-floating-dock,
+.selene-app .sl-hud-coords,
+.selene-app .sl-timezone-control,
+.selene-app .atlas-tools-menu { background: var(--surface-1); color: var(--text-1); border-color: var(--border); }
+.selene-app .sl-workspace,
+.selene-app .mc-bar,
+.selene-app .sl-models-page,
+.selene-app .sl-forecast-page { background: var(--bg-app); color: var(--text-1); }
+.selene-app .sl-nav-tail select,
+.selene-app .sl-timezone-control select,
+.selene-app .mc-field input,
+.selene-app .mc-site select,
+.selene-app .sl-search-bar { background: var(--surface-2); color: var(--text-1); border-color: var(--line-2); color-scheme: dark; }
+.selene-app .atlas-nav a[aria-current=page],
+.selene-app .atlas-tools > summary.is-active,
+.selene-app .sl-dock-btn.is-active,
+.selene-app .mc-btn-primary,
+.selene-app .sl-btn-primary { background: var(--theme-lime); color: #0a1820; border-color: var(--theme-lime); }
+.selene-app .atlas-nav a:not([aria-current=page]) { color: var(--text-2); }
+
+/* Shared content panels and input surfaces */
+.selene-app :is(input, textarea, select) { color-scheme: dark; }
+.selene-app .sl-models-grid code { background: var(--surface-2); color: var(--text-1); border-color: var(--border); }
+
+/* Planning and analysis pages */
+.selene-app :is(.tr-layout aside, .tr-layout main, .cl-grid article,
+  .sa-grid article, .sa-kpis div) { background: var(--surface-1); }
+.selene-app :is(.tr-layout input, .tr-layout select, .sa-controls input,
+  .cl-filters input, .cl-filters select) {
+  background: var(--surface-2); color: var(--text-1); border-color: var(--line-2);
+}
+.selene-app :is(.tr-toolbar button, .sa-controls button, .cl-stages button,
+  .sa-verify button) { background: var(--surface-2); color: var(--text-1); border-color: var(--line-2); }
+.selene-app :is(.tr-toolbar button[aria-pressed=true], .cl-stages button.active) {
+  background: var(--theme-lime); color: #0a1820; border-color: var(--theme-lime);
+}
+.selene-app .sa-verify { background: var(--surface-2); color: var(--text-1); }
+
+/* Portal chatbot lives outside .selene-app. */
+.sc-root { color-scheme: dark; }
+.sc-root .sc-launcher { background: var(--theme-lime); color: #1f1a00; border-color: var(--theme-lime); }
+.sc-root .sc-launcher svg { color: #1f1a00; }
+.sc-root .sc-launcher.is-open { background: #0f2a31; color: var(--sc-text); }
+.sc-root .sc-launcher.is-open svg { color: var(--text-1); }
+.sc-root .sc-panel { background: var(--sc-bg); color: var(--sc-text); border-color: var(--sc-border); }
+.sc-root :is(input, textarea) { background: transparent; color: var(--sc-text); border-color: var(--sc-border); }
+.sc-root :is(.sc-link, .sc-context svg, .sc-starters svg) { color: var(--sc-accent); }
+
+/* Keep semantic feedback legible without switching back to light cards. */
+.selene-app :is(.fx-answer.is-yellow, .fx-answer.is-orange) {
+  background: var(--warn-bg); color: #f3c779; border-color: var(--warn-border);
+}
+.sc-root .sc-error {
+  background: var(--danger-bg); color: #ffabb0; border-color: var(--danger-border);
+}
+.sc-root .sc-error.is-warn { background: var(--warn-bg); color: #f3c779; border-color: var(--warn-border); }
+.sc-root .sc-verify { background: var(--ok-bg); color: var(--text-1); border-color: var(--ok-border); }

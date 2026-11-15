@@ -1,0 +1,147 @@
+/* Original dark-slate canvas with light purple-indigo accents. */
+:root {
+  /* Core palette */
+  --theme-deep: #0a1820;
+
+  /* Indigo & Lavender Scale based on #4fdcf5 */ /* Primary Light Indigo */
+  --indigo-900: #e6fbfe;
+  --indigo-950: #f2fdff;
+
+  /* Neutral & Canvas Scale */
+  --slate-50: #0f1f27;
+  --slate-100: #152a34;
+  --slate-200: #1d3845;
+  --slate-300: #2c5161;
+  --slate-400: #5f8794;
+  --slate-500: #93b7c1;
+  --slate-600: #b4d2da;
+  --slate-700: #cfe5eb;
+  --slate-800: #e4f3f7;
+  --slate-900: #f4fbfd;
+
+  /* Functional Theme Surfaces */
+  --bg-app: #0a1820;
+  --bg-void: #061117;
+  --bg-deep: #08141b;
+  --bg-canvas: #0a1820;
+  --surface-1: #0f222b;
+  --surface-2: #142c37;
+  --surface-3: #1a3644;
+  --surface-elevated: #17323e;
+  --surface-hover: #1e3d4c;
+
+  /* Lines & Borders */
+  --line-1: #24495a;
+  --line-2: #2f5e73;
+  --line-3: rgba(79, 220, 245, 0.25);
+  --border: #24495a;
+  --border-light: #2f5e73;
+
+  /* Typography Colors */
+  --text-1: #f2fbfd;
+  --text-2: #d6eef4;
+  --text-3: #a9cbd4;
+  --text-4: #8fb3bd;
+  --text-muted: #a9cbd4;
+  --text-primary: #f2fbfd;
+  --text-secondary: #d6eef4;
+
+  /* Brand Accents */
+  --accent-deep: #0a1820;
+
+  /* Status Tokens */
+  --warm: #b87b28;
+  --danger: #cf3c3c;
+  --ok: #1c8d62;
+  --ok-bg: #1e382d;
+  --ok-border: #427b5f;
+  --warn-bg: #3b3120;
+  --warn-border: #8b7041;
+  --danger-bg: #422b2c;
+  --danger-border: #986166;
+
+  /* Sizing & Radius */
+  --gutter: 10px;
+  --navbar-h: 56px;
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 14px;
+  --radius-card: 14px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --fast: 140ms;
+  --med: 240ms;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px 0 rgba(12, 16, 27, 0.05);
+  --shadow-card: 0 4px 18px -2px rgba(79, 220, 245, 0.18), 0 2px 6px -1px rgba(12, 16, 27, 0.04);
+  --shadow-raised: 0 10px 28px -4px rgba(79, 220, 245, 0.24), 0 4px 12px -2px rgba(12, 16, 27, 0.05);
+  --shadow-panel: 0 16px 40px -5px rgba(79, 220, 245, 0.3), 0 6px 16px -2px rgba(12, 16, 27, 0.06);
+
+  /* Typography Families */
+  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-num: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  --font-technical: var(--font-body);
+  --font-annotation: var(--font-body);
+
+  --text-hero: clamp(28px, 3vw, 40px);
+  --text-h2: clamp(20px, 2vw, 26px);
+  --text-body: 14px;
+  --text-small: 13px;
+  --text-label: 12px;
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0;
+  --measure: 62ch;
+  --space-section: 40px;
+
+  /* Polestar Mappings */
+  --ps-bg-void: var(--bg-void);
+  --ps-bg-deep: var(--bg-deep);
+  --ps-bg-panel: var(--surface-1);
+  --ps-bg-card: var(--surface-1);
+  --ps-bg-card-hover: var(--indigo-100);
+  --ps-bg-elevated: var(--surface-elevated);
+  --ps-border: var(--border);
+  --ps-border-light: var(--border-light);
+  --ps-border-focus: var(--border-focus);
+  --ps-text-1: var(--text-1);
+  --ps-text-2: var(--text-2);
+  --ps-text-3: var(--text-3);
+  --ps-text-4: var(--text-4);
+  --ps-ok: var(--ok);
+  --ps-warn: var(--warm);
+  --ps-danger: var(--danger);
+  --ps-shadow-panel: var(--shadow-panel);
+  --ps-shadow-raised: var(--shadow-raised);
+
+  /* Selene Mappings */
+  --sl-bg-void: var(--bg-void);
+  --sl-bg-deep: var(--bg-deep);
+  --sl-bg-panel: var(--surface-1);
+  --sl-bg-card: var(--surface-1);
+  --sl-bg-card-hover: var(--indigo-100);
+  --sl-border: var(--border);
+  --sl-border-light: var(--border-light);
+  --sl-border-focus: var(--border-focus);
+  --sl-text-primary: var(--text-1);
+  --sl-text-secondary: var(--text-2);
+  --sl-text-muted: var(--text-muted);
+  --sl-text-faint: var(--text-4);
+  --sl-status-online: var(--ok);
+  --sl-status-offline: var(--danger);
+  --sl-font-heading: var(--font-display);
+  --sl-radius-sm: 6px;
+  --sl-radius-md: 10px;
+  --sl-radius-lg: 14px;
+  --sl-radius-pill: 9999px;
+  --sl-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --sl-fast: 140ms;
+  --sl-med: 240ms;
+
+  /* Atlas Mappings */
+  --atlas-header-height: 56px;
+  --atlas-bg: var(--bg-app);
+  --atlas-panel: var(--surface-1);
+  --atlas-line: var(--border);
+  --atlas-text: var(--text-1);
+  --atlas-muted: var(--text-2);
+}

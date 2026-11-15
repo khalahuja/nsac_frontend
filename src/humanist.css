@@ -1,0 +1,305 @@
+/* ========================================================================== 
+   SELENE — Humanist editorial refinement
+   One familiar system sans-serif stack for all interface text.
+   Indigo replaces the previous cyan/gold accent pairing.
+   ========================================================================== */
+
+
+
+/* Keep the workspace on the same conventional typeface as navigation. */
+.sl-workspace {
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  font-family: var(--font-body);
+}
+
+.sl-workspace .sl-eyebrow {
+  font-family: var(--font-annotation);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.sl-workspace .chart-heading span,
+.sl-workspace .sl-forecast-controls label {
+  font-family: var(--font-technical);
+  font-size: var(--text-label);
+}
+
+.selene-app,
+.selene-app button,
+.selene-app input,
+.selene-app select {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  letter-spacing: var(--tracking-normal);
+  line-height: 1.6;
+}
+
+/* Native dropdown menus need explicit option colors to avoid a white popup. */
+.selene-app select {
+  color-scheme: dark;
+  color: var(--sl-text-primary);
+}
+
+.selene-app select option {
+  color: var(--sl-text-primary);
+  background-color: #11111b;
+}
+
+.horizon-header h2,
+.sl-brand-text strong {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+  line-height: 1.12;
+}
+.horizon-header h2 { font-size: var(--text-hero); }
+
+.sl-eyebrow {
+  color: var(--indigo-soft);
+  font-family: var(--font-display);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.01em;
+  text-transform: none;
+}
+.sl-brand-text strong {
+  font-style: normal;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.sl-brand-text small {
+  color: var(--indigo-soft);
+  font-family: var(--font-body);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+.horizon-header p {
+  max-width: var(--measure);
+  color: var(--sl-text-secondary);
+  font-size: var(--text-body);
+  line-height: 1.65;
+  letter-spacing: 0;
+}
+
+/* Data typography: quiet mono values, with one expressive hero per view. */
+.sl-hud-coords strong,
+.chart-heading strong,
+.horizon-current-time {
+  font-family: var(--font-num);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+}
+
+.chart-heading span,
+.sl-forecast-controls label {
+  color: var(--sl-text-muted);
+  font-family: var(--font-body);
+  font-size: var(--text-label);
+  font-weight: 550;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+/* Indigo interaction language */
+.sl-dock-btn.is-active,
+.sl-dock-btn.is-primary,
+.sl-btn-primary {
+  color: #0d1028;
+  background: linear-gradient(145deg, var(--indigo-bright), var(--indigo));
+  border-color: var(--indigo-soft);
+  box-shadow: 0 5px 18px -8px rgba(99, 102, 241, 0.85);
+}
+.horizon-time-stepper button.is-accent {
+  color: var(--indigo-bright);
+  background: var(--indigo-dim);
+  border-color: var(--indigo-line);
+}
+.sl-forecast-controls input:focus,
+.sl-forecast-controls select:focus {
+  border-color: var(--indigo-soft);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+.sl-nav-tail { gap: 10px; }
+
+/* Editorial breathing room and less viewport chrome. */
+.sl-panel-scroll { padding: 28px; }
+.sl-panel-scroll > div > * + * { margin-top: var(--space-section); }
+.sl-panel-scroll > div > * { margin-bottom: 0; }
+
+/* Equal comparison cards: strict three-column desktop rhythm. */
+
+/* Sticky radar and intentionally asymmetric equations layout. */
+.horizon-content-grid {
+  grid-template-columns: minmax(380px, 480px) minmax(0, 1fr);
+  gap: 32px;
+}
+.horizon-radar-card { position: sticky; top: 0; }
+.sl-floating-dock { gap: 4px; padding: 6px; }
+.sl-dock-btn { height: 34px; padding: 0 16px; font-size: var(--text-small); }
+
+/* Softer cards and human prose. */
+.analysis-card.is-good,
+.analysis-card.is-power {
+  border-color: var(--indigo-line);
+  background: linear-gradient(150deg, var(--indigo-dim), rgba(29, 34, 48, 0.02));
+}
+
+/* Keep celestial bodies immediately distinguishable in the sky plot. */
+.radar-legend-tag.is-sun,
+.horizon-plot-caption span:first-child {
+  color: #facc15;
+  border-color: rgba(250, 204, 21, 0.42);
+}
+.radar-legend-tag.is-earth,
+.horizon-plot-caption span:last-child {
+  color: #7dd3fc;
+  border-color: rgba(125, 211, 252, 0.42);
+}
+.horizon-radar-meta,
+.horizon-plot-caption { flex-wrap: wrap; }
+
+@media (max-width: 860px) {
+  .horizon-content-grid { grid-template-columns: 1fr; }
+  .horizon-radar-card { position: relative; }
+}
+
+
+/* --------------------------------------------------------------------------
+   Scene badge — compact descriptive label
+
+   The badge is decorative copy that labels the current view; it is NOT the
+   primary readout (that's the context bar under the navbar). It was previously set at
+   `--text-hero` (30–44px) and sprawled across the Moon mesh. Here it is
+   dialled back to a size that reads as a caption, with a bounded width so the
+   paragraph wraps instead of running halfway across the stage.
+   -------------------------------------------------------------------------- *//* ==========================================================================
+   NAVBAR — authoritative definition
+   --------------------------------------------------------------------------
+   The navbar had been redefined in four stylesheets,
+which pushed it onto two
+   rows (~170px of chrome). This block is the single source of truth: one row,
+60px,
+brand | sections | time zone. Selectors are scoped under
+   .selene-app so they outrank the earlier rules without !important.
+
+   Navigation guidelines applied (NN/g,
+Apple HIG,
+Material):
+   - one row,
+always visible,
+nothing hidden behind a menu on desktop
+   - text labels next to icons; icons alone are ambiguous to new users
+   - a clear "you are here" state: filled tab plus aria-current
+   - 36px+ hit targets,
+visible keyboard focus
+   - status shown only when it needs action (offline) {
+  height: 60px;
+  flex: 0 0 60px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 0 20px;
+  background: rgba(6, 8, 14, 0.96);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: none;
+}
+
+.selene-app .sl-brand { flex: none; gap: 10px; }
+.selene-app .sl-brand-logo { width: 32px; height: 32px; }
+.selene-app .sl-brand-text strong { font-size: 16px; letter-spacing: 0.14em; }
+
+.selene-app .sl-mode-tabs {
+  flex: 1 1 auto;
+  min-width: 0;
+  justify-self: auto;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 0;
+  background: none;
+  border: 0;
+  box-shadow: none;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.selene-app .sl-mode-tabs::-webkit-scrollbar { display: none; }
+
+.selene-app .sl-mode-btn {
+  position: relative;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 38px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  box-shadow: none;
+  color: #a3a8b8;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: color 140ms ease, background 140ms ease;
+}
+.selene-app .sl-mode-btn:hover { color: #f1f2f6; background: rgba(29, 34, 48, 0.06); }
+
+/* Active: high-contrast text plus an underline bar, so the current section is
+   unmistakable without a loud gradient pill. */
+
+.selene-app .sl-nav-tail { flex: none; display: flex; align-items: center; gap: 10px; margin-left: auto; }
+
+.selene-app .sl-timezone-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 10px;
+  color: #a3a8b8;
+  background: rgba(29, 34, 48, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.selene-app .sl-timezone-control .sl-tz-select {
+  max-width: 170px;
+  background: transparent;
+  border: 0;
+  color: #e9eaf0;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+}
+.selene-app .sl-timezone-control option { background: #0b0e16; color: #e9eaf0; }
+
+.selene-app .sl-timezone-control:focus-within {
+  outline: 2px solid #a9bdd0;
+  outline-offset: 2px;
+}
+
+/* Narrower screens: drop tab text before anything wraps; tooltips keep the
+   meaning available. Labels come back at full width. */
+@media (max-width: 900px) {
+  .selene-app .sl-brand-text { display: none; }
+  .selene-app .sl-timezone-control .sl-tz-select { max-width: 110px; }
+}
+
+/* Navbar type restored to the previous, larger sizes (tabs ~15px, wordmark
+   19px), keeping the single-row layout. */
+.selene-app .sl-brand-text strong { font-size: 20px; letter-spacing: 0.12em; }
+.selene-app .sl-brand-logo { width: 38px; height: 38px; }
+.selene-app .sl-timezone-control .sl-tz-select { font-size: 15px; }

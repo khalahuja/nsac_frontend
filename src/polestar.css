@@ -1,0 +1,222 @@
+/* ========================================================================== 
+   POLESTAR — "Eternal Twilight"
+   Adapted to Selene's live component class names.
+   Gold = Sun / illumination / power. Cyan = Earth / communications.
+   ========================================================================== */
+
+
+
+.selene-app {
+  color: var(--ps-text-1);
+  font-family: var(--sl-font-ui);
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 42%, #0b1526 0%, var(--ps-bg-deep) 55%, var(--ps-bg-void) 100%),
+    var(--ps-bg-void);
+}
+
+.selene-app ::selection { color: #14100a; background: var(--ps-sun-bright); }
+.selene-app button:hover:not(:disabled) {
+  border-color: var(--ps-border-focus);
+  box-shadow: 0 8px 24px -18px rgba(160, 200, 245, 0.7);
+}
+.selene-app :focus-visible {
+  outline-color: var(--ps-sun);
+  box-shadow: 0 0 0 4px rgba(242, 196, 109, 0.11);
+}
+
+/* App shell and polar grid */
+.sl-workspace {
+  background:
+    linear-gradient(rgba(148, 178, 215, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 178, 215, 0.03) 1px, transparent 1px),
+    radial-gradient(circle at 76% 16%, rgba(111, 211, 240, 0.055), transparent 34%);
+  background-size: 38px 38px, 38px 38px, auto;
+}
+.sl-viewer {
+  background: radial-gradient(ellipse 74% 64% at 50% 48%, #101d31 0%, #070d18 55%, #04070e 100%);
+}
+.sl-viewer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(ellipse 85% 75% at 50% 50%, transparent 56%, rgba(0, 0, 0, 0.38) 100%);
+}
+.sl-brand-text small { color: var(--ps-earth); }
+.sl-timezone-control,
+.horizon-time-stepper {
+  background: rgba(29, 34, 48, 0.03);
+  border-color: var(--ps-border-light);
+  box-shadow: none;
+}
+
+/* Functional timezone/mission clock */
+.sl-timezone-control {
+  min-width: 218px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 5px 10px;
+  border: 1px solid var(--ps-border);
+  border-radius: 10px;
+  color: var(--ps-earth);
+}
+.sl-timezone-control > svg { flex: none; color: var(--ps-earth); }
+.sl-timezone-control > div { min-width: 0; display: grid; gap: 1px; }
+.sl-timezone-control .sl-tz-select {
+  width: 100%;
+  height: 21px;
+  padding: 0 20px 0 0;
+  border: 0;
+  background: transparent;
+  color: var(--ps-text-1);
+  font-size: 13px;
+  font-weight: 650;
+}
+.sl-timezone-control span {
+  overflow: hidden;
+  color: var(--ps-text-3);
+  font-family: var(--sl-font-mono);
+  font-size: 13px;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Viewport HUD */
+.sl-floating-dock,
+.sl-hud-coords {
+  background: rgba(9, 15, 26, 0.88);
+  border-color: var(--ps-border);
+  box-shadow: var(--ps-shadow-raised);
+  backdrop-filter: blur(18px) saturate(130%);
+}
+.sl-hud-coords {
+  border-color: rgba(167, 139, 250, 0.3);
+  box-shadow: var(--ps-shadow-raised), 0 0 16px -6px var(--ps-pointer-glow);
+}
+.sl-pointer-icon,
+.sl-hud-coords span { color: var(--ps-pointer); }
+.sl-hud-coords strong { text-shadow: 0 0 10px var(--ps-pointer-glow); }
+.sl-dock-btn.is-active,
+.sl-dock-btn.is-primary,
+.sl-btn-primary {
+  color: #17120a;
+  background: linear-gradient(160deg, var(--ps-sun-bright), var(--ps-sun));
+  border-color: var(--ps-sun);
+  box-shadow: 0 4px 16px -6px rgba(242, 196, 109, 0.6);
+}
+.sl-dock-btn.is-active:hover,
+.sl-dock-btn.is-primary:hover,
+.sl-btn-primary:hover:not(:disabled) {
+  color: #17120a;
+  background: linear-gradient(160deg, #ffebc2, var(--ps-sun-bright));
+  box-shadow: 0 8px 22px -6px rgba(242, 196, 109, 0.7);
+}
+
+/* Analysis rail and forms */
+.sl-inspector {
+  color: var(--ps-text-1);
+  background: var(--ps-bg-panel);
+  border-left-color: var(--ps-border);
+  backdrop-filter: blur(22px) saturate(130%);
+}
+.sl-eyebrow { color: var(--ps-earth); }
+.sl-search-bar,
+.sl-forecast-controls input,
+.sl-forecast-controls select {
+  color-scheme: dark;
+  color: var(--ps-text-1);
+  background: rgba(29, 34, 48, 0.04);
+  border-color: var(--ps-border-light);
+}
+.sl-forecast-controls input:focus,
+.sl-forecast-controls select:focus {
+  border-color: var(--ps-sun-line);
+  box-shadow: 0 0 0 3px rgba(242, 196, 109, 0.1);
+}
+
+/* Core readouts */
+
+/* Horizon radar — semantic body tracks */
+.horizon-radar-card,
+.analysis-card {
+  background: var(--ps-bg-panel);
+  border-color: var(--ps-border);
+  box-shadow: var(--ps-shadow-panel);
+  backdrop-filter: blur(20px) saturate(125%);
+}
+.horizon-time-stepper button.is-accent {
+  color: var(--ps-sun-bright);
+  background: var(--ps-sun-dim);
+  border-color: var(--ps-sun-line);
+}
+.horizon-current-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--ps-text-2);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.radar-legend-tag.is-sun {
+  color: var(--ps-sun);
+  background: rgba(242, 196, 109, 0.14);
+  border-color: rgba(242, 196, 109, 0.4);
+}
+.radar-legend-tag.is-earth {
+  color: var(--ps-earth);
+  background: rgba(111, 211, 240, 0.12);
+  border-color: rgba(111, 211, 240, 0.38);
+}
+.horizon-plot-caption span:first-child { color: var(--ps-sun); }
+.horizon-plot-caption span:last-child { color: var(--ps-earth); }
+
+/* DTE and power cards preserve their distinct meanings. */
+.analysis-card.is-good {
+  border-color: rgba(111, 211, 240, 0.36);
+  box-shadow: 0 18px 44px -28px rgba(111, 211, 240, 0.6);
+}
+.analysis-card.is-warning { border-color: rgba(255, 139, 126, 0.38); }
+.analysis-card.is-power { border-color: rgba(242, 196, 109, 0.34); }
+.text-rose { color: var(--ps-danger); }
+
+/* Site comparison */
+
+/* Calculators and forecast charts */
+.chart-grid { stroke: rgba(148, 178, 215, 0.16); }
+.chart-cursor { stroke: rgba(238, 244, 252, 0.55); }
+
+/* Scrollbars */
+.sl-panel-scroll,
+.horizon-plot-container { scrollbar-color: rgba(120, 145, 175, 0.35) transparent; }
+.sl-panel-scroll::-webkit-scrollbar-thumb,
+.horizon-plot-container::-webkit-scrollbar-thumb {
+  background: rgba(120, 145, 175, 0.28);
+}
+
+@media (max-width: 1180px) {
+  .sl-timezone-control { min-width: 174px; }
+  .sl-timezone-control span { display: none; }
+}
+
+@media (max-width: 768px) {
+  .sl-nav-tail { width: 100%; justify-content: space-between; }
+  .sl-timezone-control { min-width: 194px; }
+  .sl-timezone-control span { display: block; }
+  .horizon-radar-card { order: 1; }
+  .horizon-analysis-rail { order: 2; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .selene-app *,
+  .selene-app *::before,
+  .selene-app *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

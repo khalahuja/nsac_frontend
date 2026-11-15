@@ -1,0 +1,18 @@
+const fs = require('node:fs');
+const assert = require('node:assert/strict');
+const ts = require('typescript');
+const Module = require('node:module');
+const path = require('node:path');
+const filename = path.resolve(__dirname, '../src/lib/operations.ts');
+const compiled = ts.transpileModule(fs.readFileSync(filename, 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS } }).outputText;
+const loaded = new Module(filename); loaded._compile(compiled, filename);
+const { DEFAULT_REQUIREMENTS, validateOperations, operationsKey } = loaded.exports;
+const base = { latitude: -90, longitude: 180, landing_start_utc: '2027-01-01T00:00:00Z', landing_end_utc: '2027-02-01T00:00:00Z', nearby_radius_km: 10, requirements: { ...DEFAULT_REQUIREMENTS } };
+assert.equal(validateOperations(base), null);
+for (const key of Object.keys(DEFAULT_REQUIREMENTS)) assert.ok(validateOperations({ ...base, requirements: { ...DEFAULT_REQUIREMENTS, [key]: NaN } }));
+assert.ok(validateOperations({ ...base, landing_end_utc: '2026-12-31T00:00:00Z' }));
+assert.ok(validateOperations({ ...base, requirements: { ...DEFAULT_REQUIREMENTS, mission_hours: 2.5 } }));
+assert.ok(validateOperations({ ...base, requirements: { ...DEFAULT_REQUIREMENTS, min_both_hours: 200 } }));
+assert.ok(validateOperations({ ...base, nearby_radius_km: 51 }));
+assert.equal(operationsKey(base), operationsKey({ ...base, landing_start_utc: '2027-01-01T00:00:00+00:00' }));
+console.log('Mission operations validation and equivalent-date keys passed.');

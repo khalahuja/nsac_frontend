@@ -1,0 +1,870 @@
+/* ==========================================================================
+   sites.css — Compare Sites page
+   Refined aerospace engineering mission layout.
+   ========================================================================== */
+
+.selene-app .sx-page {
+  display: grid;
+  grid-template-columns: 330px minmax(0, 1fr);
+  height: 100%;
+  min-height: 0;
+  background: #02070f;
+  color: #e2e8f5;
+  font-family: var(--sl-font-ui, 'Inter', sans-serif);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.selene-app .sx-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Site colour dot, driven by --c */
+.selene-app .sx-page i[aria-hidden='true'] {
+  display: inline-block;
+  flex: none;
+  width: 10px;
+  height: 10px;
+  background: var(--c, #2fc8e8);
+  border-radius: 50%;
+  box-shadow: 0 0 6px var(--c, #2fc8e8);
+}
+
+/* ---------------------------------------------------------------- rail -- */
+
+.selene-app .sx-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 14px 28px;
+  overflow-y: auto;
+  background: #040a14;
+  border-right: 1px solid rgba(79, 220, 245, 0.15);
+  scrollbar-width: thin;
+}
+.selene-app .sx-rail > * { flex-shrink: 0; }
+
+.selene-app .sx-rail-head {
+  padding: 0 4px;
+}
+.selene-app .sx-rail-head h2 {
+  margin: 0 0 3px;
+  font-size: 18px;
+  line-height: 1.25;
+  font-weight: 700;
+  color: #f1f5f9;
+  letter-spacing: -0.01em;
+}
+.selene-app .sx-rail-head p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #94a3b8;
+}
+
+.selene-app .sx-block {
+  display: grid;
+  gap: 10px;
+  padding: 12px 14px;
+  background: #060e1c;
+  border: 1px solid #172740;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+.selene-app .sx-block h3 {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: #f1f5f9;
+  letter-spacing: -0.01em;
+}
+.selene-app .sx-block h3 svg {
+  color: #2fc8e8;
+}
+.selene-app .sx-count {
+  margin-left: auto;
+  font-size: 13px;
+  font-weight: 600;
+  color: #4fdcf5;
+  background: rgba(79, 220, 245, 0.12);
+  padding: 2px 7px;
+  border-radius: 99px;
+  border: 1px solid rgba(79, 220, 245, 0.25);
+}
+
+.selene-app .sx-filter-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 8px;
+  background: #081324;
+  border: 1px solid #1a2a44;
+  border-radius: 6px;
+}
+.selene-app .sx-filter-wrap input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  color: #e2e8f5;
+  background: none;
+  border: 0;
+  outline: none;
+  font-size: 13px;
+  font-family: inherit;
+}
+.selene-app .sx-filter-wrap input::placeholder {
+  color: #64748b;
+}
+
+.selene-app .sx-block label {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.selene-app .sx-block label > span {
+  font-size: 13px;
+  font-weight: 600;
+  color: #94a3b8;
+}
+.selene-app .sx-block input,
+.selene-app .sx-block select {
+  width: 100%;
+  min-width: 0;
+  height: 34px;
+  padding: 0 10px;
+  color: #f1f5f9;
+  color-scheme: dark;
+  background: #081426;
+  border: 1px solid #1e3352;
+  border-radius: 7px;
+  font-size: 13px;
+  font-family: inherit;
+  font-variant-numeric: tabular-nums;
+  outline: none;
+  transition: all 0.15s ease;
+}
+.selene-app .sx-block input:focus,
+.selene-app .sx-block select:focus {
+  border-color: #2fc8e8;
+  box-shadow: 0 0 0 2.5px rgba(79, 220, 245, 0.2);
+}
+
+/* Checklist of catalogue sites */
+.selene-app .sx-checklist {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 280px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+.selene-app .sx-checklist button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 9px;
+  width: 100%;
+  padding: 8px 10px;
+  text-align: left;
+  color: #cbd5e1;
+  background: #0d1a33;
+  border: 1px solid #1f3459;
+  border-radius: 7px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+.selene-app .sx-checklist button:hover:not(:disabled) {
+  background: #152749;
+  border-color: #385b96;
+  color: #ffffff;
+}
+.selene-app .sx-checklist button.is-on {
+  background: rgba(79, 220, 245, 0.16);
+  border-color: var(--c, #2fc8e8);
+  box-shadow: 0 0 10px rgba(79, 220, 245, 0.25);
+}
+.selene-app .sx-box {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  color: #0b0f24;
+  border: 1.5px solid #475569;
+  border-radius: 5px;
+  transition: all 0.12s ease;
+}
+.selene-app .sx-checklist button.is-on .sx-box {
+  background: var(--c, #2fc8e8);
+  border-color: var(--c, #2fc8e8);
+}
+.selene-app .sx-check-text {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+}
+.selene-app .sx-check-text strong {
+  font-size: 13px;
+  font-weight: 600;
+  color: #f1f5f9;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.selene-app .sx-check-text small {
+  font-size: 13px;
+  line-height: 1.3;
+  color: #818ea4;
+  font-family: var(--sl-font-mono, monospace);
+}
+
+/* Custom points list and form */
+.selene-app .sx-custom {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 10px;
+  background: #081324;
+  border: 1px solid var(--c, #2fc8e8);
+  border-radius: 7px;
+}
+.selene-app .sx-custom > span {
+  display: grid;
+  gap: 1px;
+  flex: 1;
+  min-width: 0;
+}
+.selene-app .sx-custom strong {
+  font-size: 13px;
+  color: #f1f5f9;
+}
+.selene-app .sx-custom small {
+  font-size: 13px;
+  color: #818ea4;
+  font-family: var(--sl-font-mono, monospace);
+}
+.selene-app .sx-custom button,
+.selene-app .sx-legend button {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  color: #94a3b8;
+  background: transparent;
+  border: 0;
+  border-radius: 5px;
+  box-shadow: none;
+  transition: all 0.12s ease;
+}
+.selene-app .sx-custom button:hover:not(:disabled),
+.selene-app .sx-legend button:hover:not(:disabled) {
+  color: #fda4af;
+  background: rgba(251, 113, 133, 0.15);
+}
+
+.selene-app .sx-custom-form {
+  display: grid;
+  gap: 7px;
+  margin: 0;
+}
+.selene-app .sx-field-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.selene-app .sx-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px;
+  color: #e2e8f8;
+  background: #172647;
+  border: 1px solid #334e80;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+.selene-app .sx-btn:hover:not(:disabled) {
+  color: #ffffff;
+  background: #233763;
+  border-color: #557ec2;
+}
+.selene-app .sx-btn-wide {
+  width: 100%;
+  padding: 8px 10px;
+  line-height: 1.35;
+  text-align: center;
+  font-size: 13px;
+}
+.selene-app .sx-btn-primary {
+  color: #ffffff;
+  background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+  border-color: #93c5fd;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4);
+}
+.selene-app .sx-btn-primary:hover:not(:disabled) {
+  color: #ffffff;
+  background: linear-gradient(135deg, #5b54f0 0%, #4b8df8 100%);
+}
+
+.selene-app .sx-step-pills {
+  display: flex;
+  gap: 5px;
+}
+.selene-app .sx-step-pills button {
+  flex: 1;
+  height: 28px;
+  padding: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #e2e8f8;
+  background: #172647;
+  border: 1px solid #334e80;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+.selene-app .sx-step-pills button:hover:not(:disabled) {
+  color: #ffffff;
+  background: #233763;
+  border-color: #557ec2;
+}
+.selene-app .sx-step-pills button.is-on {
+  color: #ffffff;
+  background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+  border-color: #93c5fd;
+  font-weight: 700;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.selene-app .sx-preset-durations {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.selene-app .sx-preset-durations button {
+  height: 25px;
+  padding: 0 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #e2e8f8;
+  background: #172647;
+  border: 1px solid #334e80;
+  border-radius: 99px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+.selene-app .sx-preset-durations button:hover {
+  color: #ffffff;
+  background: #233763;
+  border-color: #557ec2;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.selene-app .sx-notice {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #fbbf24;
+}
+
+/* ---------------------------------------------------------------- main -- */
+
+.selene-app .sx-main {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+  padding: 18px 22px 36px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.selene-app .sx-head {
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(79, 220, 245, 0.12);
+}
+.selene-app .sx-head > div { flex: 1; min-width: 0; }
+.selene-app .sx-eyebrow {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 13px;
+  color: #2fc8e8;
+  font-variant-numeric: tabular-nums;
+  font-family: var(--sl-font-mono, monospace);
+}
+.selene-app .sx-head h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #f8fafc;
+  letter-spacing: -0.01em;
+}
+.selene-app .sx-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding-bottom: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #86efac;
+  white-space: nowrap;
+}
+.selene-app .sx-status.is-busy { color: #9beefc; }
+.selene-app .sx-status.is-error { color: #fda4af; }
+.selene-app .sx-spin { animation: sx-spin 1s linear infinite; }
+@keyframes sx-spin { to { transform: rotate(360deg); } }
+
+/* Error banner with full perimeter colored border & subtle background highlight */
+.selene-app .sx-error {
+  margin: 0;
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #fecdd3;
+  background: radial-gradient(130% 130% at 0% 0%, rgba(251, 113, 133, 0.14) 0%, rgba(28, 10, 16, 0.9) 100%);
+  border: 1px solid rgba(251, 113, 133, 0.45);
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(251, 113, 133, 0.1);
+}
+
+.selene-app .sx-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.selene-app .sx-legend li {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 3px 5px 3px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #f1f5f9;
+  background: #060e1c;
+  border: 1px solid color-mix(in srgb, var(--c, #2fc8e8) 40%, #1e293b);
+  border-radius: 99px;
+}
+
+/* Best-at-a-glance tiles: full perimeter colored border & luminous background highlight */
+.selene-app .sx-highlights {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+.selene-app .sx-highlights > div {
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  padding: 12px 14px;
+  background: radial-gradient(130% 130% at 0% 0%, color-mix(in srgb, var(--c, #2fc8e8) 14%, transparent) 0%, rgba(6, 12, 22, 0.95) 100%);
+  border: 1px solid color-mix(in srgb, var(--c, #2fc8e8) 40%, #172640);
+  border-radius: 10px;
+  box-shadow: 0 4px 14px -2px color-mix(in srgb, var(--c, #2fc8e8) 14%, transparent);
+  transition: all 0.2s ease;
+}
+.selene-app .sx-highlights span {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #94a3b8;
+}
+.selene-app .sx-highlights strong {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13.5px;
+  font-weight: 650;
+  line-height: 1.25;
+  color: #f8fafc;
+}
+.selene-app .sx-highlights strong.sx-na {
+  font-size: 13px;
+  font-weight: 500;
+  color: #64748b;
+}
+.selene-app .sx-highlights em {
+  font-style: normal;
+  font-size: 20px;
+  font-weight: 700;
+  color: #e2e8f5;
+  font-variant-numeric: tabular-nums;
+  font-family: var(--sl-font-mono, monospace);
+  letter-spacing: -0.01em;
+}
+.selene-app .sx-highlights b {
+  font-size: 13px;
+  font-weight: 500;
+  color: #94a3b8;
+}
+.selene-app .sx-highlights small {
+  font-size: 13px;
+  color: #64748b;
+}
+
+/* Tabs */
+.selene-app .sx-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 4px;
+  background: #060e1b;
+  border: 1px solid #1a2a44;
+  border-radius: 8px;
+  width: fit-content;
+}
+.selene-app .sx-tabs button {
+  height: 30px;
+  padding: 0 13px;
+  color: #cbd5e1;
+  background: #14203b;
+  border: 1px solid #283e6b;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+.selene-app .sx-tabs button:hover:not(:disabled) {
+  color: #ffffff;
+  background: #1e3056;
+  border-color: #456ba8;
+}
+.selene-app .sx-tabs button.is-on {
+  color: #ffffff;
+  background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+  border-color: #93c5fd;
+  font-weight: 700;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.selene-app .sx-panel {
+  display: grid;
+  gap: 10px;
+}
+
+/* Tables: sites as rows, sortable columns */
+.selene-app .sx-table-wrap {
+  overflow-x: auto;
+  background: #050d1a;
+  border: 1px solid #172740;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+}
+.selene-app .sx-table {
+  width: 100%;
+  min-width: 800px;
+  border-collapse: collapse;
+  font-size: 13px;
+  color: #e2e8f5;
+}
+.selene-app .sx-table th,
+.selene-app .sx-table td {
+  padding: 9px 12px;
+  text-align: right;
+  border-bottom: 1px solid #132238;
+  font-variant-numeric: tabular-nums;
+  vertical-align: middle;
+}
+.selene-app .sx-table tbody tr:last-child > * { border-bottom: 0; }
+.selene-app .sx-table thead th {
+  padding: 0;
+  background: #081324;
+  vertical-align: bottom;
+}
+.selene-app .sx-table thead th:first-child {
+  padding: 9px 12px;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.selene-app .sx-table thead button {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 5px;
+  width: 100%;
+  padding: 9px 12px;
+  text-align: right;
+  color: #9beefc;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.25;
+  box-shadow: none;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.selene-app .sx-table thead button:hover:not(:disabled) {
+  color: #fff;
+  background: #0d1e38;
+}
+.selene-app .sx-table thead button span {
+  display: grid;
+  gap: 1px;
+}
+.selene-app .sx-table thead button small {
+  font-size: 13px;
+  font-weight: 400;
+  color: #7d8ea6;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.selene-app .sx-table thead button svg {
+  flex: none;
+  color: #64748b;
+}
+.selene-app .sx-table th[aria-sort='ascending'] button svg,
+.selene-app .sx-table th[aria-sort='descending'] button svg {
+  color: #2fc8e8;
+}
+
+.selene-app .sx-table tbody th {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  min-width: 210px;
+  text-align: left;
+  background: #050d1a;
+}
+.selene-app .sx-site-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.selene-app .sx-table tbody th span {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+}
+.selene-app .sx-table tbody th strong {
+  font-size: 13px;
+  font-weight: 600;
+  color: #f8fafc;
+}
+.selene-app .sx-table tbody th small {
+  font-size: 13px;
+  font-weight: 400;
+  color: #818ea4;
+  font-family: var(--sl-font-mono, monospace);
+}
+.selene-app .sx-table tbody tr:hover > * {
+  background: #0c182d;
+}
+.selene-app .sx-table tbody tr.is-selected > * {
+  background: #11203d;
+}
+
+.selene-app .sx-table td {
+  font-family: var(--sl-font-mono, monospace);
+  font-size: 13px;
+}
+.selene-app .sx-table td.is-best {
+  color: #86efac;
+  font-weight: 700;
+}
+.selene-app .sx-best {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #052e16;
+  background: #86efac;
+  border-radius: 99px;
+  vertical-align: 1px;
+}
+.selene-app .sx-na {
+  color: #556987;
+}
+
+.selene-app .sx-open {
+  width: 1%;
+  white-space: nowrap;
+}
+.selene-app .sx-open button {
+  gap: 4px;
+  height: 28px;
+  padding: 0 9px;
+  color: #9beefc;
+  background: transparent;
+  border: 1px solid #1e3352;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: none;
+  transition: all 0.12s ease;
+}
+.selene-app .sx-open button:hover:not(:disabled) {
+  background: #0e1e35;
+  border-color: #3b5a8c;
+  color: #f1f5f9;
+}
+
+.selene-app .sx-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #94a3b8;
+}
+.selene-app .sx-note svg {
+  flex: none;
+  margin-top: 2px;
+  color: #2fc8e8;
+}
+
+/* Charts */
+.selene-app .sx-charts .cmpx-cursor {
+  padding: 10px 12px;
+  font-size: 13px;
+  gap: 6px;
+}
+.selene-app .sx-charts .cmpx-chart-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.selene-app .sx-charts .cmpx-sources {
+  font-size: 13px;
+  line-height: 1.5;
+}
+.selene-app .sx-charts .chart-heading {
+  font-size: 13px;
+}
+
+/* Advantages and risks: full perimeter colored border & subtle background highlight */
+.selene-app .sx-notes {
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+.selene-app .sx-notes article {
+  padding: 14px 16px;
+  background: radial-gradient(130% 130% at 0% 0%, color-mix(in srgb, var(--c, #2fc8e8) 12%, transparent) 0%, #050d1a 100%);
+  border: 1px solid color-mix(in srgb, var(--c, #2fc8e8) 35%, #1a2a44);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px -2px color-mix(in srgb, var(--c, #2fc8e8) 12%, transparent);
+}
+.selene-app .sx-notes h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 2px;
+  font-size: 14px;
+  color: #f8fafc;
+}
+.selene-app .sx-notes p {
+  margin: 8px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #cbd5e1;
+}
+.selene-app .sx-notes p strong {
+  display: block;
+  margin-bottom: 1px;
+  font-size: 13px;
+  color: #2fc8e8;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.selene-app .sx-notes p.sx-designation {
+  margin-top: 0;
+  font-size: 13px;
+  color: #818ea4;
+}
+.selene-app .sx-muted { color: #818ea4; }
+
+.selene-app .sx-empty {
+  padding: 32px 20px;
+  text-align: center;
+  background: #050d1a;
+  border: 1px dashed #1e3352;
+  border-radius: 10px;
+}
+.selene-app .sx-empty h3 {
+  margin: 0 0 6px;
+  font-size: 15px;
+  color: #f1f5f9;
+}
+.selene-app .sx-empty p {
+  margin: 0;
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+/* ---------------------------------------------------------- responsive -- */
+
+@media (max-width: 1360px) {
+  .selene-app .sx-highlights { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .selene-app .sx-charts .cmpx-chart-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 1060px) {
+  .selene-app .sx-page { grid-template-columns: 290px minmax(0, 1fr); }
+  .selene-app .sx-head { flex-wrap: wrap; }
+}
+@media (max-width: 820px) {
+  .selene-app .sx-page { grid-template-columns: minmax(0, 1fr); height: 100%; overflow-y: auto; }
+  .selene-app .sx-rail { overflow: visible; border-right: 0; border-bottom: 1px solid rgba(79, 220, 245, 0.15); }
+  .selene-app .sx-main { overflow: visible; padding: 16px 14px 28px; }
+  .selene-app .sx-highlights { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Notes and sources (published catalogue) */
+.selene-app .sx-notes p.sx-basis { font-size: 15px; color: #a5b3d6; }
+.selene-app .sx-notes p.sx-sources a {
+  display: block;
+  margin-top: 4px;
+  font-size: 15px;
+  line-height: 1.45;
+  color: #4fdcf5;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  overflow-wrap: anywhere;
+}
+.selene-app .sx-notes p.sx-sources a:hover { color: #9beefc; }

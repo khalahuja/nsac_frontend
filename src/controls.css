@@ -1,0 +1,286 @@
+/* ==========================================================================
+   controls.css — shared mission controls (loaded last by Selene.tsx)
+
+   1. Mission context bar   location + date/time, under the navbar
+   2. 3D DTE sky plot       larger canvas, labels, legend
+   3. DTE page typography   larger, easier-to-read text
+   4. Compare Sites page    steps, tray, site comparison styling
+
+   Scoped under .selene-app so these rules outrank the older stylesheets
+   (selene.css, polestar.css, humanist.css) without !important.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Mission context bar — precision aerospace flight console strip
+   -------------------------------------------------------------------------- */
+
+.selene-app .mc-bar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 48px;
+  padding: 8px 20px;
+  background: rgba(29, 34, 48, 0.95);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  font-size: 15px;
+  color: var(--text-1);
+  overflow-x: auto;
+  scrollbar-width: none;
+  z-index: 45;
+}
+.selene-app .mc-bar::-webkit-scrollbar { display: none; }
+
+.selene-app .mc-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.selene-app .mc-divider {
+  align-self: center;
+  height: 24px;
+  width: 1px;
+  background: var(--line-1);
+  margin: 0 4px;
+}
+
+.selene-app .mc-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--indigo-deep);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.selene-app .mc-site {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.selene-app .mc-site strong {
+  color: var(--text-1);
+  font-size: 15px;
+  font-weight: 700;
+  max-width: 260px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.selene-app .mc-site select {
+  height: 32px;
+  padding: 0 8px;
+  color: var(--text-1);
+  background: var(--surface-1);
+  border: 1px solid var(--border-indigo);
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  outline: none;
+}
+
+.selene-app .mc-field {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+}
+
+.selene-app .mc-field input {
+  width: 104px;
+  height: 32px;
+  padding: 0 9px;
+  color: var(--text-1);
+  color-scheme: light;
+  background: var(--surface-1);
+  border: 1px solid var(--border-indigo);
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: var(--sl-font-mono, 'JetBrains Mono', monospace);
+  font-variant-numeric: tabular-nums;
+  outline: none;
+  transition: border-color 140ms ease, box-shadow 140ms ease;
+}
+.selene-app .mc-field-time input { width: 220px; }
+.selene-app .mc-field input:hover { border-color: var(--indigo-500); }
+.selene-app .mc-field input:focus, .selene-app .mc-site select:focus {
+  border-color: var(--indigo-deep);
+  background: var(--surface-1);
+  box-shadow: 0 0 0 3px var(--accent-dim);
+}
+
+/* Hide number spinners: coordinates are typed, not stepped. */
+.selene-app .mc-field input[type='number']::-webkit-outer-spin-button,
+.selene-app .mc-field input[type='number']::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.selene-app .mc-field input[type='number'] { -moz-appearance: textfield; appearance: textfield; }
+
+.selene-app .mc-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 14px;
+  color: var(--text-1);
+  background: var(--indigo-100);
+  border: 1px solid var(--border-indigo);
+  border-radius: 6px;
+  font-size: 13.5px;
+  font-weight: 650;
+  white-space: nowrap;
+  transition: all 140ms ease;
+}
+.selene-app .mc-btn:hover {
+  background: var(--theme-indigo-light);
+  border-color: var(--indigo-500);
+}
+.selene-app .mc-btn:active { transform: translateY(1px); }
+.selene-app .mc-btn-primary {
+  color: var(--text-1);
+  background: linear-gradient(135deg, var(--theme-indigo-light), var(--indigo-500));
+  border-color: var(--indigo-500);
+  box-shadow: 0 2px 8px rgba(79, 220, 245, 0.4);
+  font-weight: 750;
+}
+.selene-app .mc-btn-primary:hover {
+  background: linear-gradient(135deg, var(--indigo-300), var(--theme-indigo-light));
+  box-shadow: 0 4px 12px rgba(79, 220, 245, 0.6);
+}
+
+@media (max-width: 1100px) {
+  .selene-app .mc-bar { height: auto; flex-wrap: wrap; padding: 8px 14px; gap: 8px 12px; }
+  .selene-app .mc-divider { display: none; }
+}
+
+/* --------------------------------------------------------------------------
+   2. 3D DTE sky plot
+   -------------------------------------------------------------------------- */
+
+.selene-app .horizon-content-grid {
+  grid-template-columns: minmax(0, 1.55fr) minmax(380px, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+.selene-app .hz3-card { align-items: stretch; padding: 18px; }
+
+.selene-app .hz3-card .horizon-radar-meta {
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.selene-app .hz3-card .radar-legend-tag { font-size: 15px; padding: 6px 12px; }
+
+.selene-app .hz3-exag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  color: #9aa1b4;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.selene-app .hz3-exag select {
+  height: 34px;
+  padding: 0 10px;
+  color: #eef0f6;
+  color-scheme: dark;
+  background: rgba(29, 34, 48, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.selene-app .hz3-canvas {
+  position: relative;
+  width: 100%;
+  height: clamp(480px, 64vh, 780px);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #04070e;
+}
+.selene-app .hz3-canvas canvas { cursor: grab; }
+.selene-app .hz3-canvas canvas:active { cursor: grabbing; }
+
+.selene-app .hz3-badge,
+.selene-app .hz3-hint {
+  position: absolute;
+  left: 12px;
+  padding: 5px 10px;
+  border-radius: 99px;
+  background: rgba(4, 7, 14, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  font-size: 13px;
+  pointer-events: none;
+}
+.selene-app .hz3-badge { top: 12px; color: #fcd34d; border-color: rgba(252, 211, 77, 0.35); }
+.selene-app .hz3-hint { bottom: 12px; color: #9aa1b4; }
+
+.hz3-label {
+  display: grid;
+  gap: 2px;
+  padding: 6px 10px;
+  border: 1px solid;
+  border-radius: 8px;
+  background: rgba(4, 7, 14, 0.88);
+  color: #dfe3ee;
+  font-size: 14px;
+  white-space: nowrap;
+}
+.hz3-label b { font-size: 16px; }
+.hz3-label em { color: #fda4af; font-style: normal; font-size: 13px; }
+
+.hz3-ring { color: #9aa1b4; font-size: 13px; font-weight: 600; }
+.hz3-cardinal {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(4, 7, 14, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #e5e7eb;
+  font-size: 16px;
+  font-weight: 700;
+}
+.hz3-cardinal.is-north { color: #fca5a5; border-color: rgba(252, 165, 165, 0.6); }
+
+.selene-app .hz3-card .horizon-plot-caption { gap: 18px; margin-top: 12px; font-size: 14px; }
+.selene-app .hz3-swatch {
+  display: inline-block;
+  width: 18px;
+  height: 3px;
+  margin-right: 6px;
+  vertical-align: middle;
+  border-radius: 2px;
+}
+.selene-app .hz3-swatch.is-sun { background: #fbbf24; }
+.selene-app .hz3-swatch.is-earth { background: #38bdf8; }
+
+@media (max-width: 1100px) {
+  .selene-app .horizon-content-grid { grid-template-columns: 1fr; }
+  .selene-app .hz3-canvas { height: clamp(380px, 55vh, 620px); }
+}
+
+/* --------------------------------------------------------------------------
+   3. DTE page typography — larger, easier to read
+   -------------------------------------------------------------------------- */
+
+.selene-app .horizon-header h2 { font-size: 28px; }
+.selene-app .horizon-header p { font-size: 16px; line-height: 1.55; }
+.selene-app .horizon-time-stepper button,
+.selene-app .horizon-current-time { font-size: 15px; }
+
+/* --------------------------------------------------------------------------
+   4. Compare Sites page — steps, site tray, add-site panel
+   -------------------------------------------------------------------------- */

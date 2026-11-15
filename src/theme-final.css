@@ -1,0 +1,182 @@
+/* theme-final.css — loaded last. One type system for the whole site:
+   Inter for text, JetBrains Mono for numbers/code, 16px body, 13px minimum. */
+:root {
+  --font-ui: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', Consolas, monospace;
+  --sl-font-ui: var(--font-ui);
+  --sl-font-mono: var(--font-mono);
+  --font-body: var(--font-ui);
+}
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+body, .selene-app { font-family: var(--font-ui); font-size: 16px; line-height: 1.5; }
+.selene-app :where(button, input, select, textarea) { font-family: inherit; }
+.selene-app :where(h1) { font-size: clamp(24px, 2.4vw, 32px); line-height: 1.2; }
+.selene-app :where(h2) { font-size: clamp(20px, 1.8vw, 24px); line-height: 1.25; }
+.selene-app :where(h3) { font-size: 18px; line-height: 1.3; }
+.selene-app :where(:focus-visible) { outline: 2px solid #4fdcf5; outline-offset: 2px; }
+
+/* Bright cyan and bright yellow palette with coordinated tonal shades. */
+:root {
+  --theme-cyan: #4fdcf5;
+  --theme-indigo-light: #4fdcf5;
+  --theme-lime: #ffe53b;
+  --accent: var(--theme-cyan);
+  --accent-bright: #9beefc;
+  --accent-dim: rgba(79, 220, 245, 0.16);
+  --accent-line: var(--theme-cyan);
+  --border-focus: var(--theme-cyan);
+  --border-indigo: var(--theme-indigo-light);
+  --text-indigo: var(--theme-indigo-light);
+  --indigo: var(--theme-indigo-light);
+  --indigo-soft: var(--theme-indigo-light);
+  --indigo-bright: #b8f3fd;
+  --indigo-deep: #16a9cc;
+  --indigo-50: #122c33;
+  --indigo-100: #16404a;
+  --indigo-200: #1c5a66;
+  --indigo-300: #2aa7c4;
+  --indigo-400: #4fdcf5;
+  --indigo-500: #4fdcf5;
+  --indigo-600: #2aa7c4;
+  --indigo-700: #b8f3fd;
+  --indigo-800: #deebfa;
+  --indigo-dim: rgba(79, 220, 245, 0.18);
+  --indigo-line: rgba(79, 220, 245, 0.5);
+  --cool: var(--theme-cyan);
+  --ps-sun: var(--theme-lime);
+  --ps-sun-bright: #dfe7b5;
+  --ps-sun-dim: rgba(255, 229, 59, 0.16);
+  --ps-sun-line: rgba(255, 229, 59, 0.22);
+  --ps-earth: var(--theme-cyan);
+  --ps-earth-bright: #9beefc;
+  --ps-earth-dim: rgba(79, 220, 245, 0.16);
+  --ps-earth-line: rgba(79, 220, 245, 0.5);
+  --ps-pointer: var(--theme-cyan);
+  --ps-pointer-glow: rgba(79, 220, 245, 0.4);
+  --sl-accent-lunar: var(--theme-indigo-light);
+  --sl-accent-lunar-glow: rgba(79, 220, 245, 0.4);
+  --sl-accent-solar: var(--theme-lime);
+  --sl-accent-solar-glow: rgba(255, 229, 59, 0.4);
+  --sl-accent-cyan: var(--theme-cyan);
+  --sl-accent-cyan-glow: rgba(79, 220, 245, 0.4);
+  --sl-pointer-color: var(--theme-cyan);
+  --sl-pointer-glow: rgba(79, 220, 245, 0.4);
+}
+.selene-app :where(:focus-visible), .sc-root :where(:focus-visible) {
+  outline: 2px solid var(--theme-cyan);
+  outline-offset: 2px;
+}
+.selene-app a:hover { color: var(--theme-cyan); }
+.selene-app :is(.sl-eyebrow, .sl-brand-text small) { color: var(--theme-cyan); }
+.sc-root .sc-launcher:not(.is-open):not(.is-cooldown):hover { background: var(--brand-lime-hover, #ffd60a); border-color: var(--brand-lime-hover, #ffd60a); }
+
+/* ---------------------------------------------------------------------------
+   Brand palette: sky blue #4fdcf5 (primary) + bright yellow #FFE53B (accent).
+   Blue carries navigation, links and data; yellow marks the one main action
+   on a screen and the active page, so it stays rare and meaningful.
+   Bright yellow (#FFE53B) and cyan use dark ink on filled controls.
+   --------------------------------------------------------------------------- */
+:root {
+  --brand-blue: #4fdcf5;
+  --brand-blue-deep: #16a9cc;
+  --brand-blue-soft: rgba(79, 220, 245, 0.16);
+  --brand-lime: #ffe53b;
+  --brand-lime-hover: #ffd60a;
+  --brand-lime-soft: rgba(255, 229, 59, 0.16);
+  --brand-ink: #0c1a26;
+  --brand-lime-ink: #1f1a00;
+}
+
+/* Active page tab: lime pill with dark text. */
+.selene-app .atlas-nav a[aria-current=page],
+.selene-app .atlas-tools > summary.is-active {
+  color: var(--brand-lime-ink);
+  background: var(--brand-lime);
+  box-shadow: 0 2px 10px rgba(255, 229, 59, 0.12);
+}
+.selene-app .atlas-nav a:hover:not([aria-current=page]),
+.selene-app .atlas-tools > summary:hover:not(.is-active) { background: var(--brand-blue-soft); color: #e6fbfe; }
+
+/* Primary actions across pages: lime. */
+
+/* Secondary selected states (tabs, toggles): blue. */
+.selene-app :is(.is-active, [aria-pressed=true], [aria-selected=true]):not(.atlas-tools > summary):not(.sl-dock-btn.is-primary) {
+  border-color: var(--brand-blue);
+}
+
+/* Links and focus. */
+.selene-app a:not(.atlas-nav a):not([class*=btn]) { color: var(--brand-blue); }
+.selene-app :where(:focus-visible) { outline: 2px solid var(--brand-lime); outline-offset: 2px; }
+
+/* Chat launcher: the one always-visible call to action. */
+.sc-root .sc-launcher:not(.is-open):not(.is-cooldown) {
+  color: var(--brand-lime-ink);
+  background: var(--brand-lime);
+  box-shadow: 0 10px 30px -8px rgba(255, 229, 59, 0.22), 0 2px 6px rgba(0, 0, 0, 0.45);
+}
+.sc-root .sc-send, .sc-root .sc-apply { color: var(--brand-lime-ink); background: var(--brand-lime); }
+.sc-root .sc-apply:hover:not(:disabled) { background: var(--brand-lime-hover); }
+.sc-root .sc-turn.is-user .sc-bubble { color: var(--brand-ink); background: var(--brand-blue); }
+
+/* Assistant chrome: cyan greeting, yellow launcher, teal panel. */
+.sc-root .sc-greeting {
+  /* Light bubble on the dark page so the greeting is easy to spot. */
+  background: #e6fbfe;
+  border: 2px solid #4fdcf5;
+  color: #062027;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55), 0 0 0 4px rgba(79, 220, 245, 0.18);
+}
+.sc-root :is(.sc-greeting-text, .sc-greeting-dismiss) { color: #062027; }
+.sc-root .sc-greeting-text strong { color: #0b6f86; }
+.sc-root .sc-greeting-dismiss:hover { background: rgba(6, 32, 39, 0.1); }
+.sc-root button.sc-launcher:not(.is-open):not(.is-cooldown) {
+  background: #ffe53b;
+  border-color: #ffe53b;
+  color: #1f1a00;
+  box-shadow: 0 10px 28px -8px rgba(255, 229, 59, 0.55), 0 2px 6px rgba(0, 0, 0, 0.45);
+}
+.sc-root button.sc-launcher:not(.is-open):not(.is-cooldown) svg { color: #1f1a00; }
+.sc-root button.sc-launcher:not(.is-open):not(.is-cooldown):hover {
+  background: #ffd60a;
+  filter: none;
+  box-shadow: 0 12px 30px -8px rgba(255, 229, 59, 0.7), 0 2px 6px rgba(0, 0, 0, 0.45);
+}
+.sc-root button.sc-launcher.is-open { background: #0f2a31; border-color: #4fdcf5; color: #ecfbff; }
+.sc-root button.sc-launcher.is-cooldown { background: #3a2f00; border-color: #ffe53b; color: #ffe53b; }
+.sc-root button.sc-launcher.is-busy::after { border-color: #4fdcf5; }
+
+.selene-app .sl-navbar :is(.atlas-nav > a, .atlas-tools > summary, .atlas-tools-menu a) {
+  font-size: 14px;
+}
+
+.selene-app .sl-navbar .sl-brand-text strong {
+  font-size: 22px;
+}
+
+/* Distinct accents for the site conditions panel. */
+.selene-app .atlas-snapshot .atlas-metrics > div {
+  --metric-color: #bca7f5;
+  --metric-tint: rgba(188, 167, 245, 0.08);
+  background: linear-gradient(135deg, var(--metric-tint), transparent);
+}
+.selene-app .atlas-snapshot .atlas-metrics > .condition-sun {
+  --metric-color: #f4cf78;
+  --metric-tint: rgba(244, 207, 120, 0.08);
+}
+.selene-app .atlas-snapshot .atlas-metrics > .condition-earth {
+  --metric-color: #85c8f2;
+  --metric-tint: rgba(133, 200, 242, 0.08);
+}
+.selene-app .atlas-snapshot .atlas-metrics :is(strong, span svg) {
+  color: var(--metric-color);
+}
+.selene-app .atlas-snapshot .condition-status {
+  color: #cab9f5;
+  background: rgba(188, 167, 245, 0.1);
+  border-color: rgba(188, 167, 245, 0.35);
+}
+.selene-app .atlas-snapshot .condition-status.is-sunlit {
+  color: #f4cf78;
+  background: rgba(244, 207, 120, 0.1);
+  border-color: rgba(244, 207, 120, 0.35);
+}

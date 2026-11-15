@@ -1,0 +1,1 @@
+{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[-137.2,-89.45],[-137.1,-89.45],[-137.1,-89.43],[-137.2,-89.43],[-137.2,-89.45]]]},"properties":{"name":"Test sourced polygon","evidence_type":"resource_potential","source_url":"https://example.test/fixture","note":"Test fixture, not NASA data."}}]}

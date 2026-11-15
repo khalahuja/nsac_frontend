@@ -1,0 +1,253 @@
+/* ==========================================================================
+   windows.css — Science Windows page
+   Light Indigo Theme (#4fdcf5, #0a1820)
+   ========================================================================== */
+
+.selene-app .swx-page {
+  display: grid;
+  grid-template-columns: 380px minmax(0, 1fr);
+  height: 100%;
+  min-height: 0;
+  background: var(--bg-app, var(--bg-app));
+  color: var(--text-1, #0a1820);
+}
+
+/* ---------------------------------------------------------------- rail -- */
+
+.selene-app .swx-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px 22px 32px;
+  overflow-y: auto;
+  background: var(--surface-1, var(--surface-1));
+  border-right: 1px solid var(--border, var(--line-1));
+  scrollbar-width: thin;
+  scrollbar-color: #dcd4ea transparent;
+}
+
+.selene-app .swx-block {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  background: var(--surface-2, var(--surface-2));
+  border: 1px solid var(--line-2, var(--line-2));
+  border-radius: 12px;
+}
+.selene-app .swx-block h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-1, #0a1820);
+}
+.selene-app .swx-block h3 svg { color: var(--indigo-700); }
+
+.selene-app .swx-block label { display: grid; gap: 6px; margin: 0; text-transform: none; letter-spacing: 0; }
+.selene-app .swx-block label > span { font-size: 13px; font-weight: 600; line-height: 1.4; color: var(--text-2, #3a3828); }
+.selene-app .swx-block label.is-disabled { opacity: 0.45; }
+
+.selene-app .swx-block input[type='number'],
+.selene-app .swx-block input[type='datetime-local'],
+.selene-app .swx-block select {
+  width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  color: var(--text-1, #0a1820);
+  color-scheme: light;
+  background: var(--surface-1);
+  border: 1px solid var(--line-2);
+  border-radius: 8px;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+  outline: none;
+  transition: border-color 0.14s ease, box-shadow 0.14s ease;
+}
+.selene-app .swx-block input:focus,
+.selene-app .swx-block select:focus {
+  border-color: #4fdcf5;
+  box-shadow: 0 0 0 3px rgba(79, 220, 245, 0.35);
+}
+
+.selene-app .swx-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+/* Toggle */
+
+.selene-app .swx-reset {
+  align-self: flex-start;
+  padding: 6px 2px;
+  color: var(--text-indigo);
+  background: none;
+  border: 0;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.selene-app .swx-reset:hover { text-decoration: underline; }
+
+/* ---------------------------------------------------------------- main -- */
+
+.selene-app .swx-main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+  padding: 24px 28px 40px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #dcd4ea transparent;
+}
+
+.selene-app .swx-main-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
+.selene-app .swx-eyebrow { display: block; margin-bottom: 4px; font-size: 13px; color: var(--text-muted, #585542); font-variant-numeric: tabular-nums; }
+.selene-app .swx-main-head h2 { margin: 0; font-size: 26px; font-weight: 700; color: var(--text-1, #0a1820); }
+
+.selene-app .swx-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 16px;
+  color: var(--text-1);
+  background: linear-gradient(135deg, var(--indigo-100), #4fdcf5);
+  border: 1px solid #4fdcf5;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(79, 220, 245, 0.4);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.selene-app .swx-btn:hover:not(:disabled) { filter: brightness(1.04); }
+.selene-app .swx-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.selene-app .swx-alert {
+  margin: 0;
+  padding: 12px 14px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #ffabb0;
+  background: #fee2e2;
+  border-left: 3px solid #f87171;
+  border-radius: 6px;
+}
+
+/* Summary tiles */
+.selene-app .swx-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.selene-app .swx-stats > div {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  padding: 18px 20px;
+  background: var(--surface-1);
+  border: 1px solid var(--line-2);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(12, 16, 27, 0.04);
+}
+.selene-app .swx-stats span { font-size: 13px; font-weight: 600; color: var(--text-muted, #585542); }
+.selene-app .swx-stats strong { font-size: 28px; font-weight: 700; line-height: 1.1; color: var(--text-1, #0a1820); font-variant-numeric: tabular-nums; }
+.selene-app .swx-stats strong.swx-stat-date { font-size: 18px; line-height: 1.35; }
+.selene-app .swx-stats small { font-size: 13px; color: var(--text-muted, #585542); }
+
+/* Timeline strip */
+.selene-app .swx-timeline {
+  display: grid;
+  gap: 10px;
+  padding: 18px 20px;
+  background: var(--surface-1);
+  border: 1px solid var(--line-2);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(12, 16, 27, 0.04);
+}
+.selene-app .swx-track {
+  position: relative;
+  height: 38px;
+  background: repeating-linear-gradient(90deg, rgba(79, 220, 245, 0.25) 0 1px, transparent 1px calc(100% / 14)), var(--indigo-100);
+  border: 1px solid var(--line-2);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.selene-app .swx-seg {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  padding: 0;
+  background: #16a9cc;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: filter 120ms ease, transform 120ms ease;
+}
+.selene-app .swx-seg:hover { filter: brightness(1.15); transform: scaleY(1.08); }
+.selene-app .swx-seg:focus-visible { outline: 2px solid #0a1820; outline-offset: 1px; }
+.selene-app .swx-track-labels { display: flex; justify-content: space-between; font-size: 13px; color: var(--text-muted, #585542); font-variant-numeric: tabular-nums; }
+.selene-app .swx-legend { margin: 0; font-size: 13px; color: var(--text-2, #3a3828); }
+.selene-app .swx-legend i { display: inline-block; width: 12px; height: 12px; margin-right: 6px; vertical-align: -2px; background: #16a9cc; border-radius: 3px; }
+
+/* Results table */
+.selene-app .swx-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line-2);
+  border-radius: 12px;
+  background: var(--surface-1);
+  box-shadow: 0 2px 8px rgba(12, 16, 27, 0.04);
+}
+.selene-app .swx-table { width: 100%; border-collapse: collapse; font-size: 14px; color: var(--text-1, #0a1820); }
+.selene-app .swx-table th,
+.selene-app .swx-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--line-1); }
+.selene-app .swx-table thead th {
+  position: sticky;
+  top: 0;
+  background: var(--indigo-100);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-1, #0a1820);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.selene-app .swx-table tbody tr:hover td { background: var(--surface-2); }
+.selene-app .swx-table td { font-variant-numeric: tabular-nums; }
+.selene-app .swx-table td.swx-num { width: 48px; color: var(--text-muted, #585542); font-weight: 600; }
+.selene-app .swx-table td.swx-len { font-size: 15px; font-weight: 700; color: #8ce0ad; }
+.selene-app .swx-table td.swx-reason { color: var(--text-2, #3a3828); }
+.selene-app .swx-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  color: var(--text-indigo);
+  background: none;
+  border: 0;
+  font-size: 13.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.selene-app .swx-link:hover { text-decoration: underline; }
+
+.selene-app .swx-empty {
+  padding: 32px 24px;
+  text-align: center;
+  background: var(--surface-1);
+  border: 1px dashed var(--line-2);
+  border-radius: 12px;
+}
+.selene-app .swx-empty h3 { margin: 0 0 8px; font-size: 18px; color: var(--text-1, #0a1820); }
+.selene-app .swx-empty p { margin: 0; font-size: 14px; line-height: 1.55; color: var(--text-muted, #585542); }
+
+.selene-app .swx-note { margin: 0; font-size: 13px; line-height: 1.6; color: var(--text-muted, #585542); }
+
+/* ---------------------------------------------------------- responsive -- */
+
+@media (max-width: 1280px) {
+  .selene-app .swx-page { grid-template-columns: 320px minmax(0, 1fr); }
+  .selene-app .swx-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 960px) {
+  .selene-app .swx-page { grid-template-columns: 1fr; height: auto; }
+  .selene-app .swx-rail { overflow: visible; border-right: 0; border-bottom: 1px solid var(--border, var(--line-1)); }
+  .selene-app .swx-main { overflow: visible; }
+}

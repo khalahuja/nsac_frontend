@@ -1,0 +1,16 @@
+# Selene is an interactive tool, not content for indexing or AI training.
+# The API also refuses crawler user-agents (backend/app/bot_guard.py).
+User-agent: *
+Disallow: /
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /

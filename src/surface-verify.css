@@ -1,0 +1,7 @@
+.sa-wrap { grid-column: 1 / -1; height: 100%; overflow: auto; background: #141719; }
+.sa-wrap .sa-page { height: auto; overflow: visible; }
+.sa-verify { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 10px 32px; background: #253039; color: #dbe9f1; font-size: 13px; }
+.sa-verify button { padding: 7px 11px; border: 1px solid #7096ae; border-radius: 5px; background: #38546a; color: #eef5fa; }
+.sa-verify button:disabled { opacity: .6; }
+.sa-kpis { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+@media (max-width: 850px) { .sa-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

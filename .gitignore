@@ -1,0 +1,20 @@
+# --- Node ------------------------------------------------------------------
+node_modules/
+dist/
+*.tsbuildinfo
+.vite/
+
+# --- Environment -----------------------------------------------------------
+.env
+.env.*
+!.env.example
+
+# --- Local browser-test profiles (cookies, logins, caches) -----------------
+tests/previews/*-edge/
+tests/previews/**/*-edge/
+
+# --- Editor / OS -----------------------------------------------------------
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

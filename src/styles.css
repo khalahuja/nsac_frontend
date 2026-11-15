@@ -1,0 +1,220 @@
+/* ==========================================================================
+   Lunar Environment Explorer — dashboard stylesheet
+
+   Layout model
+   ------------
+   A full-bleed 3D canvas sits behind a fixed chrome layer:
+
+     .main-navbar     full-width bar, flush to the top      z 30
+     .workspace-panel right-hand analysis rail              z 20
+     .control-dock    bottom-centre scene toggles           z 20
+     .pointer-status  bottom-left live readout              z 20
+     drei <Html>      in-scene labels, pinned below chrome  z 0–4
+
+   Everything is spaced off a single --gutter so nothing fights for room.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Design tokens
+   -------------------------------------------------------------------------- */
+
+
+
+* { box-sizing: border-box; }
+html, body, #root { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+
+/* Numeric readouts must not jitter as values change. */
+.chart-heading strong, input[type='number'], input[type='datetime-local'] {
+  font-variant-numeric: tabular-nums;
+}
+
+/* One consistent, visible keyboard focus ring across every control. */
+:where(button, input, select, a, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Respect users who ask for reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. Keyframes
+   -------------------------------------------------------------------------- */
+
+@keyframes panel-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes rail-in {
+  from { opacity: 0; transform: translateX(18px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes chrome-in {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes dock-in {
+  from { opacity: 0; transform: translate(-50%, 12px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(94, 214, 164, 0.5); }
+  70% { box-shadow: 0 0 0 6px rgba(94, 214, 164, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(94, 214, 164, 0); }
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* --------------------------------------------------------------------------
+   3. Shell + canvas
+   -------------------------------------------------------------------------- */
+
+/* Vignette: pulls focus to the centre and stops panels floating on flat black. */
+
+/* In-scene labels. Kept visually quiet so they read as annotation, not UI. */
+
+/* --------------------------------------------------------------------------
+   4. Navigation bar
+   -------------------------------------------------------------------------- */
+
+/* Brand ------------------------------------------------------------------ */
+
+/* Section tabs ----------------------------------------------------------- */
+
+/* Right-hand cluster ----------------------------------------------------- */
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 28px;
+  padding: 0 11px;
+  border-radius: 99px;
+  border: 1px solid var(--line-2);
+  background: var(--surface-2);
+  color: var(--text-3);
+  font-size: 13px;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  transition: color var(--fast) var(--ease), border-color var(--fast) var(--ease);
+}
+
+.status-pill i {
+  width: 6px;
+  height: 6px;
+  flex: none;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.status-pill.is-online { color: var(--ok); border-color: rgba(94, 214, 164, 0.28); }
+.status-pill.is-online i { animation: pulse-ring 2.4s var(--ease) infinite; }
+.status-pill.is-offline { color: var(--danger); border-color: rgba(255, 139, 126, 0.3); background: rgba(255, 139, 126, 0.08); }
+.status-pill.is-pending { color: var(--text-4); }
+
+/* --------------------------------------------------------------------------
+   5. Buttons
+   -------------------------------------------------------------------------- */
+
+/* Sheen that sweeps across on hover. */
+
+/* --------------------------------------------------------------------------
+   6. Workspace rail
+   -------------------------------------------------------------------------- */
+
+/* Slim, unobtrusive scrollbar. */
+
+/* --------------------------------------------------------------------------
+   7. Form controls
+   -------------------------------------------------------------------------- */
+
+/* Hide the number spinners — coordinates are typed, not stepped. */
+
+/* --------------------------------------------------------------------------
+   8. Readouts + metric cards
+   -------------------------------------------------------------------------- */
+
+/* Accent rail that grows on hover — a quiet affordance, no layout shift. */
+
+/* Provenance chips ------------------------------------------------------- */
+
+/* Numbered steps --------------------------------------------------------- */
+
+/* Solar-system body navigator ------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+   9. Forecast + charts
+   -------------------------------------------------------------------------- */
+
+.charts { display: grid; gap: 11px; margin-top: 18px; }
+
+.forecast-chart {
+  position: relative;
+  padding: 12px 11px 6px;
+  background: var(--surface-2);
+  border: 1px solid var(--line-3);
+  border-radius: var(--radius);
+  transition: border-color var(--fast) var(--ease), background var(--fast) var(--ease);
+}
+.forecast-chart:hover { background: var(--surface-3); border-color: var(--line-2); }
+
+.chart-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding: 0 4px; }
+.chart-heading span { color: var(--text-3); font-size: 13px; font-weight: 650; text-transform: uppercase; letter-spacing: 0.1em; }
+.chart-heading strong { font-size: 13.248px; font-weight: 640; }
+
+.forecast-chart svg { display: block; width: 100%; height: 132px; overflow: visible; touch-action: none; cursor: crosshair; }
+.chart-grid { stroke: rgba(175, 195, 219, 0.09); stroke-width: 1; }
+.chart-cursor { stroke: rgba(255, 255, 255, 0.34); stroke-width: 1; stroke-dasharray: 3 3; }
+.chart-axis { fill: var(--text-4); font-size: 13px; }
+
+/* --------------------------------------------------------------------------
+   10. Status strips
+   -------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+   11. Control dock
+   -------------------------------------------------------------------------- */
+
+/* Cross-browser range slider. */
+
+/* --------------------------------------------------------------------------
+   12. Loading affordances
+   -------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+   13. Responsive
+   -------------------------------------------------------------------------- */
+
+/* Tablet: the rail becomes a bottom sheet so the 3D view keeps the width. */
+
+@media (max-width: 860px) {
+  .status-pill span { display: none; }
+}
+
+/* --------------------------------------------------------------------------
+   14. Mission readout — large epoch + coordinate display
+   --------------------------------------------------------------------------
+   Sits top-left under the navbar. These four values are what the user is
+   actually reasoning about, so they get the largest type in the interface.
+   It mirrors the form inputs rather than owning state, so the two can never
+   disagree.
+   -------------------------------------------------------------------------- */
+
+/* Hemisphere letter: present but subordinate to the number. */
+
+/* Below the tablet breakpoint the rail becomes a bottom sheet, so the readout
+   spans the top of the viewport instead of floating beside it. */

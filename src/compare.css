@@ -1,0 +1,31 @@
+/* ==========================================================================
+   compare.css — Compare Sites Legacy and Shared Chart Styles
+   Cohesive Light Indigo Theme (#4fdcf5, #0a1820)
+   ========================================================================== */
+
+/* ---------------------------------------------------------------- rail -- */
+
+/* ---------------------------------------------------------------- main -- */
+
+/* Comparison table and selected-site chips */
+
+/* Charts */
+.selene-app .cmpx-charts { display: grid; gap: 12px; }
+.selene-app .cmpx-cursor {
+  display: grid;
+  gap: 6px;
+  padding: 10px 14px;
+  background: var(--surface-2, var(--surface-2));
+  border: 1px solid var(--line-2, var(--line-2));
+  border-radius: 10px;
+  font-size: 13px;
+  color: var(--text-muted, #585542);
+  text-transform: none;
+  letter-spacing: 0;
+}
+.selene-app .cmpx-cursor strong { color: var(--text-1, #0a1820); }
+.selene-app .cmpx-cursor input { width: 100%; accent-color: #16a9cc; }
+.selene-app .cmpx-chart-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.selene-app .cmpx-sources { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 13px; color: var(--text-muted, #585542); }
+.selene-app .cmpx-sources i { display: inline-block; width: 8px; height: 8px; margin-right: 4px; border-radius: 50%; vertical-align: middle; }
+.selene-app .cmpx-sources strong { color: var(--text-1, #0a1820); }
