@@ -7,7 +7,7 @@ The web interface for Selene: an interactive 3D Moon atlas, environmental foreca
 ![Selene lunar atlas](public/tour/ch1_atlas.png)
 
 - **Live site:** https://selenenasa.netlify.app
-- **Backend API:** [khalahuja/nsac_backend](https://github.com/khalahuja/nsac_backend)
+- **Backend API:** https://nsac-backend.onrender.com ([khalahuja/nsac_backend](https://github.com/khalahuja/nsac_backend))
 
 > Selene is a research and educational prototype for preliminary planning. It is not a flight-certified mission-design or landing-safety system.
 
