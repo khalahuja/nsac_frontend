@@ -6,7 +6,7 @@ The web interface for Selene: an interactive 3D Moon atlas, environmental foreca
 
 ![Selene lunar atlas](public/tour/ch1_atlas.png)
 
-- **Live site:** https://coruscating-melomakarona-7267df.netlify.app
+- **Live site:** https://selenenasa.netlify.app
 - **Backend API:** [khalahuja/nsac_backend](https://github.com/khalahuja/nsac_backend)
 
 > Selene is a research and educational prototype for preliminary planning. It is not a flight-certified mission-design or landing-safety system.
@@ -77,7 +77,7 @@ npm run preview   # serve the production build locally
 
 After setting or changing `VITE_API_BASE_URL`, go to **Deploys → Trigger deploy → Deploy project without cache**.
 
-On the backend, add the Netlify URL to `CORS_ORIGINS`, for example `https://coruscating-melomakarona-7267df.netlify.app`. Otherwise the browser's requests are rejected.
+On the backend, add the Netlify URL to `CORS_ORIGINS`, for example `https://selenenasa.netlify.app`. Otherwise the browser's requests are rejected.
 
 ### Docker
 
