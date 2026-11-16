@@ -20,7 +20,8 @@
   --sc-bad: #ffa6aa;
   position: fixed;
   right: max(24px, env(safe-area-inset-right));
-  bottom: max(24px, env(safe-area-inset-bottom));
+  /* Clears the host's "Powered by Netlify" badge in the bottom-right corner. */
+  bottom: max(76px, env(safe-area-inset-bottom));
   z-index: 1000;
   display: flex;
   flex-direction: column;
@@ -99,7 +100,7 @@
   display: flex;
   flex-direction: column;
   width: min(440px, calc(100vw - 32px));
-  height: min(680px, calc(100dvh - 120px));
+  height: min(680px, calc(100dvh - 172px));
   overflow: hidden;
   background: var(--sc-bg);
   border: 1px solid var(--sc-border);
@@ -458,8 +459,8 @@
 @keyframes sc-spin { to { transform: rotate(360deg); } }
 
 @media (max-width: 600px) {
-  .sc-root { right: max(12px, env(safe-area-inset-right)); bottom: max(12px, env(safe-area-inset-bottom)); }
-  .sc-panel { width: calc(100vw - 24px); height: calc(100dvh - 100px); }
+  .sc-root { right: max(12px, env(safe-area-inset-right)); bottom: max(64px, env(safe-area-inset-bottom)); }
+  .sc-panel { width: calc(100vw - 24px); height: calc(100dvh - 152px); }
   .sc-launcher { min-height: 48px; padding: 0 16px 0 14px; }
 }
 @media (prefers-reduced-motion: reduce) {
